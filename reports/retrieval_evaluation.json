@@ -1,0 +1,366 @@
+{
+  "num_documents": 122,
+  "num_chunks": 1577,
+  "methods": {
+    "bm25": {
+      "recall@5": 1.0,
+      "mrr": 1.0,
+      "ndcg@5": 0.9838126741750564,
+      "citation_coverage": 1.0,
+      "details": [
+        {
+          "question": "Người lao động đơn phương chấm dứt hợp đồng lao động cần báo trước bao lâu?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Ban hành Quy chế lao động đối với các xí nghiệp có vốn đầu tư nước ngoài"
+        },
+        {
+          "question": "Trường hợp nào người lao động được nhận trợ cấp thôi việc?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Hướng dẫn thực hiện Quyết định 217-HĐBT của Hội đồng Bộ trưởng về lao động - tiền lương và xã hội"
+        },
+        {
+          "question": "Doanh nghiệp có trách nhiệm gì về an toàn vệ sinh lao động?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 0.9828920819566879,
+          "citation_coverage": 1.0,
+          "top_title": "Về việc tăng cường công tác an toàn vệ sinh lao động và phòng chống cháy nổ"
+        },
+        {
+          "question": "Quy định về tiền lương và lương tối thiểu của người lao động là gì?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Về mức lương tối thiểu và tiền lương của lao động Việt Nam làm việc trong các doanh nghiệp có vốn đầu tư nước ngoài"
+        },
+        {
+          "question": "Người lao động nước ngoài cần điều kiện gì để làm việc tại Việt Nam?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Hướng dẫn thực hiện việc cấp giấy phép lao động cho người nước ngoài làm việc tại các doanh nghiệp, tổ chức tại Việt Nam."
+        },
+        {
+          "question": "Kỷ luật sa thải người lao động được áp dụng trong trường hợp nào?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 0.9828920819566879,
+          "citation_coverage": 1.0,
+          "top_title": "Ban hành Quy chế lao động đối với các xí nghiệp có vốn đầu tư nước ngoài"
+        },
+        {
+          "question": "Bảo hiểm thất nghiệp hỗ trợ người lao động như thế nào?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 0.9047172294870751,
+          "citation_coverage": 1.0,
+          "top_title": "Ban hành Quy chế lao động đối với các xí nghiệp có vốn đầu tư nước ngoài"
+        },
+        {
+          "question": "Tranh chấp lao động tập thể được giải quyết như thế nào?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Về việc thành lập Hội đồng trọng tài lao động tỉnh"
+        }
+      ]
+    },
+    "vector": {
+      "recall@5": 1.0,
+      "mrr": 0.9375,
+      "ndcg@5": 0.9640328833143246,
+      "citation_coverage": 1.0,
+      "details": [
+        {
+          "question": "Người lao động đơn phương chấm dứt hợp đồng lao động cần báo trước bao lâu?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Ban hành Quy chế lao động đối với các xí nghiệp có vốn đầu tư nước ngoài"
+        },
+        {
+          "question": "Trường hợp nào người lao động được nhận trợ cấp thôi việc?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Quy định chi tiết thi hành Pháp lệnh Nghĩa vụ lao động công ích"
+        },
+        {
+          "question": "Doanh nghiệp có trách nhiệm gì về an toàn vệ sinh lao động?",
+          "recall@5": 1.0,
+          "mrr": 0.5,
+          "ndcg@5": 0.7122630665145961,
+          "citation_coverage": 1.0,
+          "top_title": "Về việc hướng dẫn vịec chăm sóc sức khỏe người lao động trong các doanh nghiệp vừa và nhỏ"
+        },
+        {
+          "question": "Quy định về tiền lương và lương tối thiểu của người lao động là gì?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Hướng dẫn xác định quỹ tiền lương thực hiện khi doanh nghiệp nhà nước không bảo đảm chỉ tiêu nộp ngân sách và lợi nhuận"
+        },
+        {
+          "question": "Người lao động nước ngoài cần điều kiện gì để làm việc tại Việt Nam?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Hướng dẫn thực hiện việc cấp giấy phép lao động cho người nước ngoài làm việc tại các doanh nghiệp, tổ chức tại Việt Nam."
+        },
+        {
+          "question": "Kỷ luật sa thải người lao động được áp dụng trong trường hợp nào?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Hướng dẫn thực hiện Quyết định 217-HĐBT của Hội đồng Bộ trưởng về lao động - tiền lương và xã hội"
+        },
+        {
+          "question": "Bảo hiểm thất nghiệp hỗ trợ người lao động như thế nào?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Ban hành Quy chế lao động đối với các xí nghiệp có vốn đầu tư nước ngoài"
+        },
+        {
+          "question": "Tranh chấp lao động tập thể được giải quyết như thế nào?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Ban hành Quy chế lao động đối với các xí nghiệp có vốn đầu tư nước ngoài"
+        }
+      ]
+    },
+    "hybrid": {
+      "recall@5": 1.0,
+      "mrr": 0.9375,
+      "ndcg@5": 0.9599663812504707,
+      "citation_coverage": 1.0,
+      "details": [
+        {
+          "question": "Người lao động đơn phương chấm dứt hợp đồng lao động cần báo trước bao lâu?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Ban hành Quy chế lao động đối với các xí nghiệp có vốn đầu tư nước ngoài"
+        },
+        {
+          "question": "Trường hợp nào người lao động được nhận trợ cấp thôi việc?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Hướng dẫn một số Điều về lao động theo Nghị định số 103/1999/NĐ-CP ngày 10/09/1999 của Chính phủ về giao, bán, khoán kinh doanh, cho thuê doanh nghiệp Nhà nước"
+        },
+        {
+          "question": "Doanh nghiệp có trách nhiệm gì về an toàn vệ sinh lao động?",
+          "recall@5": 1.0,
+          "mrr": 0.5,
+          "ndcg@5": 0.6797310500037655,
+          "citation_coverage": 1.0,
+          "top_title": "Về việc hướng dẫn vịec chăm sóc sức khỏe người lao động trong các doanh nghiệp vừa và nhỏ"
+        },
+        {
+          "question": "Quy định về tiền lương và lương tối thiểu của người lao động là gì?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Về việc hướng dẫn thực hiện Quyết định số 198/1999/QĐ-TTg ngày 30/9/1999 của Thủ tướng Chính phủ về tiền lương đối với các ban quản lý dự án đầu tư xây dựng."
+        },
+        {
+          "question": "Người lao động nước ngoài cần điều kiện gì để làm việc tại Việt Nam?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Hướng dẫn thực hiện việc cấp giấy phép lao động cho người nước ngoài làm việc tại các doanh nghiệp, tổ chức tại Việt Nam."
+        },
+        {
+          "question": "Kỷ luật sa thải người lao động được áp dụng trong trường hợp nào?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Ban hành Quy chế lao động đối với các xí nghiệp có vốn đầu tư nước ngoài"
+        },
+        {
+          "question": "Bảo hiểm thất nghiệp hỗ trợ người lao động như thế nào?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Ban hành Quy chế lao động đối với các xí nghiệp có vốn đầu tư nước ngoài"
+        },
+        {
+          "question": "Tranh chấp lao động tập thể được giải quyết như thế nào?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Về việc thành lập Hội đồng trọng tài lao động tỉnh"
+        }
+      ]
+    },
+    "hybrid_rrf": {
+      "recall@5": 1.0,
+      "mrr": 1.0,
+      "ndcg@5": 0.9933628036907468,
+      "citation_coverage": 1.0,
+      "details": [
+        {
+          "question": "Người lao động đơn phương chấm dứt hợp đồng lao động cần báo trước bao lâu?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Ban hành Quy chế lao động đối với các xí nghiệp có vốn đầu tư nước ngoài"
+        },
+        {
+          "question": "Trường hợp nào người lao động được nhận trợ cấp thôi việc?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Hướng dẫn thực hiện Quyết định 217-HĐBT của Hội đồng Bộ trưởng về lao động - tiền lương và xã hội"
+        },
+        {
+          "question": "Doanh nghiệp có trách nhiệm gì về an toàn vệ sinh lao động?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 0.9469024295259745,
+          "citation_coverage": 1.0,
+          "top_title": "Về việc tăng cường công tác an toàn vệ sinh lao động và phòng chống cháy nổ"
+        },
+        {
+          "question": "Quy định về tiền lương và lương tối thiểu của người lao động là gì?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Về việc hướng dẫn thực hiện Quyết định số 198/1999/QĐ-TTg ngày 30/9/1999 của Thủ tướng Chính phủ về tiền lương đối với các ban quản lý dự án đầu tư xây dựng."
+        },
+        {
+          "question": "Người lao động nước ngoài cần điều kiện gì để làm việc tại Việt Nam?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Hướng dẫn thực hiện việc cấp giấy phép lao động cho người nước ngoài làm việc tại các doanh nghiệp, tổ chức tại Việt Nam."
+        },
+        {
+          "question": "Kỷ luật sa thải người lao động được áp dụng trong trường hợp nào?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Ban hành Quy chế lao động đối với các xí nghiệp có vốn đầu tư nước ngoài"
+        },
+        {
+          "question": "Bảo hiểm thất nghiệp hỗ trợ người lao động như thế nào?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Ban hành Quy chế lao động đối với các xí nghiệp có vốn đầu tư nước ngoài"
+        },
+        {
+          "question": "Tranh chấp lao động tập thể được giải quyết như thế nào?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Về việc thành lập Hội đồng trọng tài lao động tỉnh"
+        }
+      ]
+    },
+    "hybrid_rrf_mmr": {
+      "recall@5": 1.0,
+      "mrr": 1.0,
+      "ndcg@5": 0.979477493377168,
+      "citation_coverage": 1.0,
+      "details": [
+        {
+          "question": "Người lao động đơn phương chấm dứt hợp đồng lao động cần báo trước bao lâu?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Ban hành Quy chế lao động đối với các xí nghiệp có vốn đầu tư nước ngoài"
+        },
+        {
+          "question": "Trường hợp nào người lao động được nhận trợ cấp thôi việc?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Hướng dẫn thực hiện Quyết định 217-HĐBT của Hội đồng Bộ trưởng về lao động - tiền lương và xã hội"
+        },
+        {
+          "question": "Doanh nghiệp có trách nhiệm gì về an toàn vệ sinh lao động?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 0.8529278650606567,
+          "citation_coverage": 1.0,
+          "top_title": "Về việc tăng cường công tác an toàn vệ sinh lao động và phòng chống cháy nổ"
+        },
+        {
+          "question": "Quy định về tiền lương và lương tối thiểu của người lao động là gì?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Về việc hướng dẫn thực hiện Quyết định số 198/1999/QĐ-TTg ngày 30/9/1999 của Thủ tướng Chính phủ về tiền lương đối với các ban quản lý dự án đầu tư xây dựng."
+        },
+        {
+          "question": "Người lao động nước ngoài cần điều kiện gì để làm việc tại Việt Nam?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 0.9828920819566879,
+          "citation_coverage": 1.0,
+          "top_title": "Hướng dẫn thực hiện việc cấp giấy phép lao động cho người nước ngoài làm việc tại các doanh nghiệp, tổ chức tại Việt Nam."
+        },
+        {
+          "question": "Kỷ luật sa thải người lao động được áp dụng trong trường hợp nào?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Ban hành Quy chế lao động đối với các xí nghiệp có vốn đầu tư nước ngoài"
+        },
+        {
+          "question": "Bảo hiểm thất nghiệp hỗ trợ người lao động như thế nào?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Ban hành Quy chế lao động đối với các xí nghiệp có vốn đầu tư nước ngoài"
+        },
+        {
+          "question": "Tranh chấp lao động tập thể được giải quyết như thế nào?",
+          "recall@5": 1.0,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "citation_coverage": 1.0,
+          "top_title": "Về việc thành lập Hội đồng trọng tài lao động tỉnh"
+        }
+      ]
+    }
+  }
+}
