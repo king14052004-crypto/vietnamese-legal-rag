@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from typing import List, Optional, Dict
 
+@dataclass
 class LegalDocument:
     id: str
     title: Optional[str] = None
