@@ -2,7 +2,7 @@ import html
 import re
 from typing import List
 
-from schema import LegalDocument
+from src.data.schema import LegalDocument
 
 def _normalize_text(text: str) -> str:
   if not text:
