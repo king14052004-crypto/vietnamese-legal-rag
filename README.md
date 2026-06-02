@@ -97,6 +97,17 @@ With Gemini:
 python app.py "Người lao động đơn phương chấm dứt hợp đồng cần báo trước bao lâu?"
 ```
 
+## Streamlit UI
+
+Run a local demo UI:
+
+```bash
+streamlit run app/streamlit_app.py
+```
+
+The UI defaults to retrieval-only mode with TF-IDF fallback so it starts quickly.
+Enable `Generate Gemini answer` after setting `GEMINI_API_KEYS`.
+
 ## Generate answers and evaluate RAGAS-style metrics
 
 ```bash
@@ -114,6 +125,7 @@ it falls back to a lexical proxy for that sample and records the reason.
 - Vector backend: FAISS
 - LLM: Gemini 3.1 Flash Lite via AI Studio `google-genai`
 - API key strategy: `BatchGeminiClient` round-robin over `GEMINI_API_KEYS`
+- UI: Streamlit (`app/streamlit_app.py`)
 
 Why this choice:
 - BM25 handles exact legal terms.

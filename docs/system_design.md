@@ -11,6 +11,7 @@ Hugging Face legal corpus
   -> FAISS dense index
   -> hybrid fusion / RRF / MMR / optional rerank
   -> Gemini grounded answer with citations
+  -> CLI / Streamlit UI
   -> retrieval metrics + RAGAS-style AI Studio GenAI evaluation
 ```
 
@@ -43,3 +44,7 @@ Comparisons and evaluation analysis are kept in notebooks:
 
 - `notebooks/02_retrieval_experiments.ipynb`
 - `notebooks/03_ragas_evaluation.ipynb`
+
+## UI
+
+The local UI lives in `app/streamlit_app.py`. It defaults to retrieval-only mode so the demo still works without a Gemini key, then can call Gemini once `GEMINI_API_KEYS` is configured.
