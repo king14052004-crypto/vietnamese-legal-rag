@@ -36,3 +36,10 @@ Use `hybrid_rrf` for the portfolio demo because it balances:
 - stable ranking across incompatible BM25/vector score scales.
 
 Use MMR when retrieved contexts are too repetitive. Use Cross-Encoder reranking only when latency and model download size are acceptable.
+
+## Experiment location
+
+Comparisons and evaluation analysis are kept in notebooks:
+
+- `notebooks/02_retrieval_experiments.ipynb`
+- `notebooks/03_ragas_evaluation.ipynb`

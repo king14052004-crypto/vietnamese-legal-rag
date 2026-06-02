@@ -50,7 +50,18 @@ Build chunks:
 python -m src.pipeline.build_indices
 ```
 
-## Retrieval evaluation
+## Experiment notebooks
+
+Run comparison and evaluation in notebooks:
+
+```text
+notebooks/02_retrieval_experiments.ipynb
+notebooks/03_ragas_evaluation.ipynb
+```
+
+The Python modules under `src/` are intentionally kept simple so they can be reused by the CLI app or a future FastAPI/Streamlit deploy.
+
+## Retrieval evaluation from CLI
 
 Fast smoke evaluation without downloading sentence-transformer models:
 
@@ -96,6 +107,19 @@ python -m src.evaluation.evaluate_ragas
 `evaluate_ragas` uses AI Studio Gemini API via `google-genai` to judge RAGAS-style metrics:
 faithfulness, answer relevancy, and context precision. If GenAI judging fails for a sample,
 it falls back to a lexical proxy for that sample and records the reason.
+
+## Selected method/model for future deploy
+
+- Retrieval: `hybrid_rrf`
+- Vector backend: FAISS
+- LLM: Gemini 3.1 Flash Lite via AI Studio `google-genai`
+- API key strategy: `BatchGeminiClient` round-robin over `GEMINI_API_KEYS`
+
+Why this choice:
+- BM25 handles exact legal terms.
+- FAISS dense retrieval handles natural-language questions.
+- RRF avoids fragile BM25/vector score normalization.
+- MMR and Cross-Encoder reranking remain optional for quality/latency trade-offs.
 
 ## Recommended balanced retrieval method
 
