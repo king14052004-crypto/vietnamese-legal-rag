@@ -1,5 +1,5 @@
 from datasets import load_dataset
-from schema import LegalDocument
+from src.data.schema import LegalDocument
 
 def load_vietnamese_legal_metadata(limit: int | None = None) -> list[dict]:
   meta = load_dataset("th1nhng0/vietnamese-legal-documents", "metadata", split="data")
