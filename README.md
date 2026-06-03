@@ -12,7 +12,7 @@ The project follows a notebook-first workflow:
 4. Run the manual golden-set answer smoke evaluation in `notebooks/03_ragas_evaluation.ipynb`.
 5. Keep only the selected pipeline in `src/` for the CLI and Streamlit demo.
 
-The selected retrieval method is Hybrid RRF: BM25 + FAISS vector retrieval with Reciprocal Rank Fusion.
+The notebook-selected retrieval method is Hybrid RRF: BM25 + FAISS vector retrieval with Reciprocal Rank Fusion. The CLI and Streamlit demo use a memory-aware local fallback on the full generated corpus so the project runs reliably without prebuilt vector artifacts.
 
 ## Setup
 
@@ -36,8 +36,10 @@ Primary corpus:
 Regenerate the filtered labor-law corpus:
 
 ```bash
-python -m src.data.build_corpus --max-docs 500 --scan-limit 30000
+python -m src.data.build_corpus
 ```
+
+The generated `data/processed/labor_corpus.jsonl` file is ignored by Git because the full filtered corpus is large.
 
 ## Experiments
 
@@ -59,19 +61,13 @@ The notebook 03 scores are smoke/regression signals, not a full benchmark. For a
 
 ## CLI
 
-Inspect retrieved sources without an LLM:
-
-```bash
-python app.py "Người lao động đơn phương chấm dứt hợp đồng cần báo trước bao lâu?" --no-llm --tfidf-fallback
-```
-
-Generate an answer with Gemini:
+Run a question:
 
 ```bash
 python app.py "Người lao động đơn phương chấm dứt hợp đồng cần báo trước bao lâu?"
 ```
 
-`--tfidf-fallback` is intended for fast offline smoke tests. Without it, the pipeline uses multilingual sentence embeddings with FAISS.
+If `GEMINI_API_KEY` or `GEMINI_API_KEYS` is configured, the CLI generates an answer with `gemini-3.1-flash-lite`. Without a key, it prints the retrieved legal sources only.
 
 ## Streamlit UI
 
@@ -81,13 +77,13 @@ Run the local demo:
 streamlit run app/streamlit_app.py
 ```
 
-The UI defaults to retrieval-only mode with TF-IDF fallback so it starts quickly. Enable Gemini answer generation after setting `GEMINI_API_KEY` or `GEMINI_API_KEYS`.
+The UI starts in retrieval-only mode so it works without a Gemini key. Enable Gemini answer generation after setting `GEMINI_API_KEY` or `GEMINI_API_KEYS`.
 
 ## Selected Deploy Configuration
 
-- Retrieval: Hybrid RRF
-- Sparse retrieval: BM25
-- Vector backend: FAISS
+- Retrieval: Hybrid RRF experiments in notebooks; memory-aware local retrieval in CLI/UI
+- Sparse retrieval: BM25 / memory-aware keyword scan for large local corpora
+- Vector backend: FAISS for embedding experiments
 - Embedding model: `intfloat/multilingual-e5-small`
 - LLM: `gemini-3.1-flash-lite`
 - API key strategy: round-robin over `GEMINI_API_KEYS`

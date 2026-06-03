@@ -23,7 +23,7 @@ The answer-evaluation report is intentionally scoped as a smoke/regression signa
 Filtered Vietnamese labor-law corpus
   -> legal-aware chunks
   -> BM25 index
-  -> FAISS vector index
+  -> optional FAISS vector index for embedding experiments
   -> Reciprocal Rank Fusion
   -> grounded Gemini answer with citations
   -> CLI / Streamlit UI
@@ -31,14 +31,14 @@ Filtered Vietnamese labor-law corpus
 
 ## Selected Retrieval Method
 
-Hybrid RRF is the production default because it combines:
+Hybrid RRF is the notebook-selected retrieval method because it combines:
 
 - exact legal terminology recall from BM25,
 - semantic matching from multilingual sentence embeddings and FAISS,
 - stable rank-level fusion without score-scale normalization.
 
-Weighted fusion and MMR remain notebook experiments, not production branches.
+Weighted fusion and MMR remain notebook experiments, not production branches. The local CLI/UI uses a memory-aware fallback on very large chunk sets so the full generated corpus can run on a laptop without hardcoded query terms or a prebuilt vector index.
 
-## UI
+## CLI / UI
 
-The local UI lives in `app/streamlit_app.py`. It defaults to retrieval-only mode with TF-IDF fallback so the demo works without a Gemini key. Gemini generation can be enabled after `GEMINI_API_KEY` or `GEMINI_API_KEYS` is configured.
+The CLI and local UI default to a simple full-corpus retrieval flow that works on a laptop without a Gemini key. Gemini generation can be enabled after `GEMINI_API_KEY` or `GEMINI_API_KEYS` is configured.

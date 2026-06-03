@@ -9,25 +9,24 @@ from src.generation.prompt import build_rag_prompt
 from src.retrieval.pipeline import RetrievalPipeline
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_CORPUS = PROJECT_ROOT / "data/processed/labor_corpus_sample.jsonl"
+DEFAULT_CORPUS = PROJECT_ROOT / "data/processed/labor_corpus.jsonl"
 DEFAULT_QUESTION = "Người lao động đơn phương chấm dứt hợp đồng cần báo trước bao lâu?"
+DEFAULT_TOP_K = 6
 
 
 @st.cache_resource(show_spinner="Đang load corpus và build index...")
-def load_retriever(corpus_path: str, use_tfidf_fallback: bool) -> RetrievalPipeline:
+def load_retriever(corpus_path: str = str(DEFAULT_CORPUS)) -> RetrievalPipeline:
     documents = load_documents_from_jsonl(corpus_path)
     chunks = chunk_documents(documents)
-    return RetrievalPipeline(chunks, use_tfidf_fallback=use_tfidf_fallback)
+    return RetrievalPipeline(chunks, use_tfidf_fallback=True)
 
 
 def retrieve_contexts(
     question: str,
-    top_k: int,
-    use_tfidf_fallback: bool,
     corpus_path: str = str(DEFAULT_CORPUS),
 ):
-    retriever = load_retriever(corpus_path, use_tfidf_fallback)
-    return retriever.retrieve(question, top_k=top_k)
+    retriever = load_retriever(corpus_path)
+    return retriever.retrieve(question, top_k=DEFAULT_TOP_K)
 
 
 def generate_answer(question: str, results) -> tuple[str, list[dict]]:
@@ -47,17 +46,11 @@ def render_sources(results) -> None:
 def main() -> None:
     st.set_page_config(page_title="Vietnamese Legal RAG", layout="wide")
     st.title("Vietnamese Labor Legal RAG")
-    st.caption("Demo tra cứu pháp luật lao động Việt Nam với Hybrid RRF + FAISS + Gemini.")
+    st.caption("Demo tra cứu pháp luật lao động Việt Nam với retrieval pipeline + Gemini.")
 
     with st.sidebar:
-        st.header("Retrieval settings")
-        st.caption("Pipeline: Hybrid RRF (selected in notebook 02)")
-        top_k = st.slider("Top K", min_value=3, max_value=10, value=6)
-        use_tfidf_fallback = st.checkbox(
-            "Use TF-IDF fallback",
-            value=True,
-            help="Bật để demo nhanh mà không cần tải sentence-transformer model.",
-        )
+        st.header("Demo settings")
+        st.caption(f"Retrieved sources: {DEFAULT_TOP_K}")
         use_llm = st.checkbox("Generate Gemini answer", value=False)
 
     question = st.text_area("Câu hỏi", value=DEFAULT_QUESTION, height=90)
@@ -66,7 +59,7 @@ def main() -> None:
             st.warning("Nhập câu hỏi trước khi chạy.")
             return
 
-        results = retrieve_contexts(question, top_k, use_tfidf_fallback)
+        results = retrieve_contexts(question)
 
         if use_llm:
             try:

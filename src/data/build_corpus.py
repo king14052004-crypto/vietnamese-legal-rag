@@ -1,6 +1,7 @@
-import argparse
 import json
+import sys
 from pathlib import Path
+from typing import Iterator
 
 from tqdm import tqdm
 
@@ -9,74 +10,80 @@ from src.data.filter_labor import is_labor_related
 from src.data.load_dataset import DATASET_NAME
 from src.data.schema import LegalDocument
 
-
-def _score_document(document: LegalDocument) -> int:
-    text = " ".join(
-        [
-            document.title or "",
-            document.nganh or "",
-            document.linh_vuc or "",
-            normalize_text(document.content_html or "")[:4000],
-        ]
-    ).lower()
-    phrases = [
-        "bộ luật lao động",
-        "hợp đồng lao động",
-        "người lao động",
-        "người sử dụng lao động",
-        "bảo hiểm thất nghiệp",
-        "trợ cấp thôi việc",
-        "trợ cấp mất việc",
-        "kỷ luật lao động",
-        "tranh chấp lao động",
-        "an toàn vệ sinh lao động",
-        "lương tối thiểu",
-        "giấy phép lao động",
-    ]
-    return sum(3 if phrase in (document.title or "").lower() else 1 for phrase in phrases if phrase in text)
+DEFAULT_OUTPUT = "data/processed/labor_corpus.jsonl"
+BATCH_SIZE = 64
 
 
-def build_labor_sample(output_path: str, max_docs: int = 500, scan_limit: int = 30000) -> list[LegalDocument]:
-    from datasets import load_dataset
+def _download_dataset_file(filename: str) -> str:
+    from huggingface_hub import hf_hub_download
 
-    metadata = load_dataset(DATASET_NAME, "metadata", split=f"data[:{scan_limit}]")
-    content = load_dataset(DATASET_NAME, "content", split=f"data[:{scan_limit}]")
-    content_map = {str(row["id"]): row.get("content_html", "") for row in content}
+    return hf_hub_download(repo_id=DATASET_NAME, filename=filename, repo_type="dataset")
 
-    candidates = []
-    for row in tqdm(metadata, desc="filter labor docs"):
-        doc_id = str(row["id"])
-        document = LegalDocument(
-            **dict(row),
-            id=doc_id,
-            content_html=content_map.get(doc_id, ""),
-            content_text=normalize_text(content_map.get(doc_id, "")),
-            raw_metadata=dict(row),
-        )
-        if is_labor_related(document):
-            candidates.append((_score_document(document), document))
 
-    candidates.sort(key=lambda item: item[0], reverse=True)
-    documents = [document for score, document in candidates[:max_docs] if score > 0]
+def _iter_parquet_rows(parquet_file, columns: list[str] | None = None) -> Iterator[dict]:
+    for batch in parquet_file.iter_batches(batch_size=BATCH_SIZE, columns=columns):
+        yield from batch.to_pylist()
+
+
+def _compact_document(document: LegalDocument) -> dict:
+    return {
+        "id": document.id,
+        "title": document.title,
+        "so_ky_hieu": document.so_ky_hieu,
+        "ngay_ban_hanh": document.ngay_ban_hanh,
+        "loai_van_ban": document.loai_van_ban,
+        "ngay_co_hieu_luc": document.ngay_co_hieu_luc,
+        "ngay_het_hieu_luc": document.ngay_het_hieu_luc,
+        "nganh": document.nganh,
+        "linh_vuc": document.linh_vuc,
+        "co_quan_ban_hanh": document.co_quan_ban_hanh,
+        "pham_vi": document.pham_vi,
+        "tinh_trang_hieu_luc": document.tinh_trang_hieu_luc,
+        "content_text": document.content_text,
+        "source_url": document.source_url,
+    }
+
+
+def build_labor_corpus(output_path: str = DEFAULT_OUTPUT) -> int:
+    import pyarrow.parquet as pq
+
+    metadata = pq.ParquetFile(_download_dataset_file("data/metadata.parquet"))
+    content = pq.ParquetFile(_download_dataset_file("data/content.parquet"))
+    metadata_by_id = {str(row["id"]): row for row in _iter_parquet_rows(metadata)}
 
     path = Path(output_path)
     path.parent.mkdir(parents=True, exist_ok=True)
+
+    seen_ids = set()
+    written = 0
     with path.open("w", encoding="utf-8") as f:
-        for document in documents:
-            f.write(json.dumps(document.to_dict(), ensure_ascii=False) + "\n")
-    return documents
+        content_rows = _iter_parquet_rows(content, columns=["id", "content_html"])
+        for content_row in tqdm(content_rows, desc="filter labor docs", total=content.metadata.num_rows):
+            doc_id = str(content_row["id"])
+            if doc_id in seen_ids:
+                continue
+            seen_ids.add(doc_id)
+
+            metadata_row = metadata_by_id.get(doc_id)
+            if metadata_row is None:
+                continue
+
+            document_data = dict(metadata_row)
+            document_data["id"] = doc_id
+            document_data["content_text"] = normalize_text(content_row.get("content_html", ""))
+            document = LegalDocument(**document_data)
+            if is_labor_related(document):
+                f.write(json.dumps(_compact_document(document), ensure_ascii=False) + "\n")
+                written += 1
+    return written
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--output", default="data/processed/labor_corpus_sample.jsonl")
-    parser.add_argument("--max-docs", type=int, default=500)
-    parser.add_argument("--scan-limit", type=int, default=30000)
-    args = parser.parse_args()
-    documents = build_labor_sample(args.output, args.max_docs, args.scan_limit)
-    print(f"wrote {len(documents)} labor documents to {args.output}")
-    for document in documents[:5]:
-        print("-", document.title)
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
+
+    count = build_labor_corpus()
+    print(f"wrote {count} labor documents to {DEFAULT_OUTPUT}")
 
 
 if __name__ == "__main__":

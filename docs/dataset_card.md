@@ -8,13 +8,13 @@
 
 ## Project subset
 
-This repo stores only a small processed sample in:
+This project generates the filtered labor-law corpus at:
 
 ```text
-data/processed/labor_corpus_sample.jsonl
+data/processed/labor_corpus.jsonl
 ```
 
-The sample is filtered toward labor-law topics such as:
+The corpus is filtered toward labor-law topics such as:
 
 - Bộ luật Lao động
 - hợp đồng lao động
@@ -26,3 +26,4 @@ The sample is filtered toward labor-law topics such as:
 - tranh chấp lao động
 
 Raw full datasets are intentionally not committed.
+The generated processed JSONL corpus is also ignored by Git because the full filtered subset is large.

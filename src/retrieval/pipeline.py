@@ -1,5 +1,6 @@
 import warnings
 from collections import defaultdict
+from heapq import nlargest
 
 import numpy as np
 from rank_bm25 import BM25Okapi
@@ -8,6 +9,7 @@ from src.data.clean_text import tokenize_vi
 from src.data.schema import LegalChunk, SearchResult
 
 DEFAULT_EMBEDDING_MODEL = "intfloat/multilingual-e5-small"
+LARGE_CORPUS_CHUNK_THRESHOLD = 100_000
 
 
 class RetrievalPipeline:
@@ -22,12 +24,22 @@ class RetrievalPipeline:
 
         self.chunks = chunks
         self.embedding_model = embedding_model
-        self._bm25 = BM25Okapi([tokenize_vi(self._chunk_text(chunk)) for chunk in chunks])
         self._encoder = None
         self._vectorizer = None
         self.vector_backend = "sentence_transformer"
-        self._embeddings = self._encode_corpus(use_tfidf_fallback)
-        self._index = self._build_faiss_index(self._embeddings)
+        self._keyword_only = use_tfidf_fallback and len(chunks) > LARGE_CORPUS_CHUNK_THRESHOLD
+        self._bm25 = (
+            None
+            if self._keyword_only
+            else BM25Okapi([tokenize_vi(self._chunk_text(chunk)) for chunk in chunks])
+        )
+        if self._keyword_only:
+            self.vector_backend = "keyword_scan"
+            self._embeddings = None
+            self._index = None
+        else:
+            self._embeddings = self._encode_corpus(use_tfidf_fallback)
+            self._index = self._build_faiss_index(self._embeddings)
 
     def retrieve(self, query: str, top_k: int = 8) -> list[SearchResult]:
         candidate_k = min(len(self.chunks), max(30, top_k * 5))
@@ -88,6 +100,8 @@ class RetrievalPipeline:
         return index
 
     def _retrieve_bm25(self, query: str, top_k: int) -> list[SearchResult]:
+        if self._bm25 is None:
+            return self._retrieve_keyword_scan(query, top_k)
         scores = self._bm25.get_scores(tokenize_vi(query))
         indices = sorted(range(len(scores)), key=lambda idx: scores[idx], reverse=True)[:top_k]
         return [
@@ -95,7 +109,50 @@ class RetrievalPipeline:
             for rank, idx in enumerate(indices, start=1)
         ]
 
+    def _retrieve_keyword_scan(self, query: str, top_k: int) -> list[SearchResult]:
+        terms = set(token for token in tokenize_vi(query) if len(token) > 1)
+        if not terms:
+            return []
+
+        doc_stats = []
+        doc_freqs: dict[str, int] = defaultdict(int)
+        total_len = 0
+        for idx, chunk in enumerate(self.chunks):
+            counts: dict[str, int] = defaultdict(int)
+            tokens = tokenize_vi(self._chunk_text(chunk))
+            total_len += len(tokens)
+            for token in tokens:
+                if token in terms:
+                    counts[token] += 1
+            if counts:
+                for token in counts:
+                    doc_freqs[token] += 1
+                doc_stats.append((idx, counts, len(tokens)))
+
+        if not doc_stats:
+            return []
+
+        avg_len = total_len / len(self.chunks)
+        scored = []
+        for idx, counts, doc_len in doc_stats:
+            score = 0.0
+            for token, term_freq in counts.items():
+                inverse_doc_freq = np.log(
+                    1.0 + (len(self.chunks) - doc_freqs[token] + 0.5) / (doc_freqs[token] + 0.5)
+                )
+                denominator = term_freq + 1.5 * (0.25 + 0.75 * doc_len / avg_len)
+                score += inverse_doc_freq * (term_freq * 2.5) / denominator
+            scored.append((float(score), idx))
+
+        top = nlargest(top_k, scored, key=lambda item: item[0])
+        return [
+            SearchResult(self.chunks[idx], score, "keyword_scan", rank)
+            for rank, (score, idx) in enumerate(top, start=1)
+        ]
+
     def _retrieve_vector(self, query: str, top_k: int) -> list[SearchResult]:
+        if self._index is None:
+            return []
         scores, indices = self._index.search(self._encode_query(query), top_k)
         return [
             SearchResult(self.chunks[int(idx)], float(score), "faiss_vector", rank)

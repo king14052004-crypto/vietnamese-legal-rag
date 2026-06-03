@@ -1,4 +1,4 @@
-import argparse
+import sys
 from pathlib import Path
 
 from src.data.chunking import chunk_documents
@@ -7,31 +7,51 @@ from src.generation.gemini_client import BatchGeminiClient
 from src.generation.prompt import build_rag_prompt
 from src.retrieval.pipeline import RetrievalPipeline
 
+PROJECT_ROOT = Path(__file__).resolve().parent
+DEFAULT_CORPUS = PROJECT_ROOT / "data/processed/labor_corpus.jsonl"
+DEFAULT_TOP_K = 6
+
+
+def read_question() -> str:
+    question = " ".join(sys.argv[1:]).strip()
+    if not question:
+        raise SystemExit('Usage: python app.py "<question>"')
+    return question
+
+
+def print_sources(results) -> None:
+    print("Retrieved sources:")
+    for result in results:
+        print(f"\n[{result.rank}] {result.chunk.title} ({result.score:.4f})")
+        print(result.chunk.text[:600])
+
 
 def main() -> None:
-    project_root = Path(__file__).resolve().parent
-    parser = argparse.ArgumentParser()
-    parser.add_argument("question")
-    parser.add_argument("--corpus", default=str(project_root / "data/processed/labor_corpus_sample.jsonl"))
-    parser.add_argument("--top-k", type=int, default=6)
-    parser.add_argument("--tfidf-fallback", action="store_true")
-    parser.add_argument("--no-llm", action="store_true")
-    args = parser.parse_args()
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
 
-    documents = load_documents_from_jsonl(args.corpus)
+    question = read_question()
+
+    documents = load_documents_from_jsonl(DEFAULT_CORPUS)
     chunks = chunk_documents(documents)
-    retriever = RetrievalPipeline(chunks, use_tfidf_fallback=args.tfidf_fallback)
-    results = retriever.retrieve(args.question, top_k=args.top_k)
+    retriever = RetrievalPipeline(chunks, use_tfidf_fallback=True)
+    results = retriever.retrieve(question, top_k=DEFAULT_TOP_K)
 
-    if args.no_llm:
-        for result in results:
-            print(f"[{result.rank}] {result.chunk.title} ({result.score:.4f})")
-            print(result.chunk.text[:600], "\n")
+    try:
+        client = BatchGeminiClient()
+    except ValueError:
+        print("No Gemini key found, so the app is showing retrieval results only.")
+        print_sources(results)
         return
 
-    client = BatchGeminiClient()
-    prompt, citations = build_rag_prompt(args.question, results)
-    print(client.generate(prompt))
+    prompt, citations = build_rag_prompt(question, results)
+    try:
+        print(client.generate(prompt))
+    except RuntimeError as exc:
+        print(f"Gemini generation failed: {exc}")
+        print_sources(results)
+        return
+
     print("\nSources:")
     for citation in citations:
         print(f"- [{citation['label']}] {citation['title']} / {citation['chunk_id']}")

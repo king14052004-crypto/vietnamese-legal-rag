@@ -11,7 +11,7 @@ __pycache__/
 .env
 .env.*
 !.env.example
-.jsonl
+data/processed/*.jsonl
 data/processed/labor_chunks.jsonl
 reports/*_embedding.*
 patches/
