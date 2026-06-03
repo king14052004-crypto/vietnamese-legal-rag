@@ -1,50 +1,42 @@
 # Vietnamese Legal RAG System Design
 
-## Pipeline
+## Notebook-First Workflow
 
 ```text
-Hugging Face legal corpus
-  -> labor-law filter
-  -> HTML/text normalization
-  -> article-aware chunking
-  -> BM25 index
-  -> FAISS dense index
-  -> hybrid fusion / RRF / MMR / optional rerank
-  -> Gemini grounded answer with citations
-  -> CLI / Streamlit UI
-  -> retrieval metrics + RAGAS-style AI Studio GenAI evaluation
+01_data_exploration.ipynb
+  -> explore corpus and filtering
+02_retrieval_experiments.ipynb
+  -> compare BM25 / vector / weighted hybrid / Hybrid RRF / MMR
+  -> select Hybrid RRF from retrieval metrics
+03_ragas_evaluation.ipynb
+  -> generate answers with the selected pipeline
+  -> evaluate answer quality with AI Studio Gemini
 ```
 
-## Retrieval methods compared
+Experimental retrieval and evaluation code stays in notebooks. Deploy-facing Python code only keeps data preparation, the selected retrieval pipeline, Gemini generation, CLI, and Streamlit UI.
 
-| Method | Purpose |
-|---|---|
-| BM25 / SparseRetrieval | Strong for exact legal phrases, article names, identifiers. |
-| FAISS vector retrieval | Strong for natural-language questions and paraphrases. |
-| Hybrid weighted | Blends normalized sparse and dense scores. |
-| Hybrid + RRF | Rank-level fusion, less sensitive to incompatible score scales. |
-| Hybrid + RRF + MMR | Keeps relevance while reducing duplicate context. |
-| Cross-Encoder rerank | Optional quality boost for top candidates; slower. |
-| HyDE | Optional query expansion before retrieval when a Gemini key is available. |
+## Production Pipeline
 
-## Recommended default
+```text
+Filtered Vietnamese labor-law corpus
+  -> legal-aware chunks
+  -> BM25 index
+  -> FAISS vector index
+  -> Reciprocal Rank Fusion
+  -> grounded Gemini answer with citations
+  -> CLI / Streamlit UI
+```
 
-Use `hybrid_rrf` for the portfolio demo because it balances:
+## Selected Retrieval Method
 
-- exact legal terminology recall,
-- semantic matching,
-- score-scale robustness,
-- stable ranking across incompatible BM25/vector score scales.
+Hybrid RRF is the production default because it combines:
 
-Use MMR when retrieved contexts are too repetitive. Use Cross-Encoder reranking only when latency and model download size are acceptable.
+- exact legal terminology recall from BM25,
+- semantic matching from multilingual sentence embeddings and FAISS,
+- stable rank-level fusion without score-scale normalization.
 
-## Experiment location
-
-Comparisons and evaluation analysis are kept in notebooks:
-
-- `notebooks/02_retrieval_experiments.ipynb`
-- `notebooks/03_ragas_evaluation.ipynb`
+Weighted fusion and MMR remain notebook experiments, not production branches.
 
 ## UI
 
-The local UI lives in `app/streamlit_app.py`. It defaults to retrieval-only mode so the demo still works without a Gemini key, then can call Gemini once `GEMINI_API_KEYS` is configured.
+The local UI lives in `app/streamlit_app.py`. It defaults to retrieval-only mode with TF-IDF fallback so the demo works without a Gemini key. Gemini generation can be enabled after `GEMINI_API_KEY` or `GEMINI_API_KEYS` is configured.

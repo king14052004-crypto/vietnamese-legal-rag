@@ -38,5 +38,8 @@ class BatchGeminiClient:
 
 
 def _load_api_keys_from_env() -> list[str]:
+    from dotenv import load_dotenv
+
+    load_dotenv()
     keys = os.getenv("GEMINI_API_KEYS") or os.getenv("GEMINI_API_KEY") or ""
     return [key.strip() for key in keys.split(",") if key.strip()]

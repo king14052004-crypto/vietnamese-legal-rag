@@ -16,4 +16,4 @@ def normalize_for_match(text: str | None) -> str:
 
 
 def tokenize_vi(text: str | None) -> list[str]:
-    return re.findall(r"[\wÀ-ỹ]+", normalize_for_match(text))
+    return re.findall(r"\w+", normalize_for_match(text))

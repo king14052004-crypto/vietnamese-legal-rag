@@ -10,14 +10,14 @@ class LegalRagPipeline:
         self.retriever = retriever
         self.generator = generator
 
-    def ask(self, question: str, method: str = "hybrid_rrf", top_k: int = 6) -> RagAnswer:
-        results = self.retriever.retrieve(question, method=method, top_k=top_k)
+    def ask(self, question: str, top_k: int = 6) -> RagAnswer:
+        results = self.retriever.retrieve(question, top_k=top_k)
         prompt, citations = build_rag_prompt(question, results)
         answer = self.generator(prompt)
         return RagAnswer(
             question=question,
             answer=answer,
             citations=citations,
-            retrieval_method=method,
+            retrieval_method="hybrid_rrf",
             context_chunks=[result.chunk for result in results],
         )

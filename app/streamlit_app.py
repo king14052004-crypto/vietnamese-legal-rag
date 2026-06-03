@@ -22,13 +22,12 @@ def load_retriever(corpus_path: str, use_tfidf_fallback: bool) -> RetrievalPipel
 
 def retrieve_contexts(
     question: str,
-    method: str,
     top_k: int,
     use_tfidf_fallback: bool,
     corpus_path: str = str(DEFAULT_CORPUS),
 ):
     retriever = load_retriever(corpus_path, use_tfidf_fallback)
-    return retriever.retrieve(question, method=method, top_k=top_k)
+    return retriever.retrieve(question, top_k=top_k)
 
 
 def generate_answer(question: str, results) -> tuple[str, list[dict]]:
@@ -46,17 +45,13 @@ def render_sources(results) -> None:
 
 
 def main() -> None:
-    st.set_page_config(page_title="Vietnamese Legal RAG", page_icon="⚖️", layout="wide")
+    st.set_page_config(page_title="Vietnamese Legal RAG", layout="wide")
     st.title("Vietnamese Labor Legal RAG")
     st.caption("Demo tra cứu pháp luật lao động Việt Nam với Hybrid RRF + FAISS + Gemini.")
 
     with st.sidebar:
         st.header("Retrieval settings")
-        method = st.selectbox(
-            "Method",
-            ["hybrid_rrf", "hybrid_rrf_mmr", "hybrid", "bm25", "vector"],
-            index=0,
-        )
+        st.caption("Pipeline: Hybrid RRF (selected in notebook 02)")
         top_k = st.slider("Top K", min_value=3, max_value=10, value=6)
         use_tfidf_fallback = st.checkbox(
             "Use TF-IDF fallback",
@@ -71,7 +66,7 @@ def main() -> None:
             st.warning("Nhập câu hỏi trước khi chạy.")
             return
 
-        results = retrieve_contexts(question, method, top_k, use_tfidf_fallback)
+        results = retrieve_contexts(question, top_k, use_tfidf_fallback)
 
         if use_llm:
             try:

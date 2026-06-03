@@ -1,10 +1,10 @@
 # Reports
 
-Generated evaluation artifacts live here:
+Notebook-generated evaluation artifacts live here:
 
 - `evaluation.md`: retrieval comparison summary.
 - `retrieval_evaluation.json`: detailed metrics and per-query top results.
 - `rag_answers.json`: Gemini answers with retrieved contexts.
 - `ragas_evaluation.json`: RAGAS-style AI Studio GenAI metrics for faithfulness, answer relevancy, and context precision.
 
-Use the notebooks in `notebooks/` for comparison/analysis; these report files are generated artifacts used by the notebooks and README.
+Generate and analyze these files from `notebooks/02_retrieval_experiments.ipynb` and `notebooks/03_ragas_evaluation.ipynb`. Deploy-facing Python code does not generate benchmark reports.

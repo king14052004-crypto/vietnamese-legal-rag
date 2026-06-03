@@ -13,7 +13,6 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("question")
     parser.add_argument("--corpus", default=str(project_root / "data/processed/labor_corpus_sample.jsonl"))
-    parser.add_argument("--method", default="hybrid_rrf")
     parser.add_argument("--top-k", type=int, default=6)
     parser.add_argument("--tfidf-fallback", action="store_true")
     parser.add_argument("--no-llm", action="store_true")
@@ -22,7 +21,7 @@ def main() -> None:
     documents = load_documents_from_jsonl(args.corpus)
     chunks = chunk_documents(documents)
     retriever = RetrievalPipeline(chunks, use_tfidf_fallback=args.tfidf_fallback)
-    results = retriever.retrieve(args.question, method=args.method, top_k=args.top_k)
+    results = retriever.retrieve(args.question, top_k=args.top_k)
 
     if args.no_llm:
         for result in results:

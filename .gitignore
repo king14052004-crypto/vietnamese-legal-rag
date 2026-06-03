@@ -1,4 +1,6 @@
 .venv/
+.tmp/
+.hf_cache/
 __pycache__/
 *.py[cod]
 .pytest_cache/
@@ -8,6 +10,8 @@ __pycache__/
 .DS_Store
 .env
 .env.*
+!.env.example
 .jsonl
 data/processed/labor_chunks.jsonl
 reports/*_embedding.*
+patches/

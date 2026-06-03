@@ -1,6 +1,7 @@
 from dataclasses import asdict, dataclass, field
 from typing import Any
 
+
 @dataclass
 class LegalDocument:
     id: str

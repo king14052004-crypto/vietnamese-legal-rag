@@ -1,6 +1,7 @@
 {
   "num_documents": 122,
   "num_chunks": 1577,
+  "vector_backend": "sentence_transformer",
   "methods": {
     "bm25": {
       "recall@5": 1.0,
@@ -77,7 +78,7 @@
     "vector": {
       "recall@5": 1.0,
       "mrr": 0.9375,
-      "ndcg@5": 0.9640328833143246,
+      "ndcg@5": 0.9327079493536112,
       "citation_coverage": 1.0,
       "details": [
         {
@@ -94,13 +95,13 @@
           "mrr": 1.0,
           "ndcg@5": 1.0,
           "citation_coverage": 1.0,
-          "top_title": "Quy định chi tiết thi hành Pháp lệnh Nghĩa vụ lao động công ích"
+          "top_title": "Hướng dẫn thực hiện Nghị định số 96/1998/NĐ-CP ngày ngày 17/11/1998 của Chính phủ về chế độ thôi việc đối với cán bộ, công chức."
         },
         {
           "question": "Doanh nghiệp có trách nhiệm gì về an toàn vệ sinh lao động?",
           "recall@5": 1.0,
           "mrr": 0.5,
-          "ndcg@5": 0.7122630665145961,
+          "ndcg@5": 0.6509209298071326,
           "citation_coverage": 1.0,
           "top_title": "Về việc hướng dẫn vịec chăm sóc sức khỏe người lao động trong các doanh nghiệp vừa và nhỏ"
         },
@@ -110,13 +111,13 @@
           "mrr": 1.0,
           "ndcg@5": 1.0,
           "citation_coverage": 1.0,
-          "top_title": "Hướng dẫn xác định quỹ tiền lương thực hiện khi doanh nghiệp nhà nước không bảo đảm chỉ tiêu nộp ngân sách và lợi nhuận"
+          "top_title": "Về mức lương tối thiểu và tiền lương của lao động Việt Nam làm việc trong các doanh nghiệp có vốn đầu tư nước ngoài"
         },
         {
           "question": "Người lao động nước ngoài cần điều kiện gì để làm việc tại Việt Nam?",
           "recall@5": 1.0,
           "mrr": 1.0,
-          "ndcg@5": 1.0,
+          "ndcg@5": 0.9047172294870751,
           "citation_coverage": 1.0,
           "top_title": "Hướng dẫn thực hiện việc cấp giấy phép lao động cho người nước ngoài làm việc tại các doanh nghiệp, tổ chức tại Việt Nam."
         },
@@ -126,13 +127,13 @@
           "mrr": 1.0,
           "ndcg@5": 1.0,
           "citation_coverage": 1.0,
-          "top_title": "Hướng dẫn thực hiện Quyết định 217-HĐBT của Hội đồng Bộ trưởng về lao động - tiền lương và xã hội"
+          "top_title": "Về việc bổ sung việc hướng dẫn làm và sử dụng sổ lao động cho công nhân, viên chức Nhà nước"
         },
         {
           "question": "Bảo hiểm thất nghiệp hỗ trợ người lao động như thế nào?",
           "recall@5": 1.0,
           "mrr": 1.0,
-          "ndcg@5": 1.0,
+          "ndcg@5": 0.9060254355346823,
           "citation_coverage": 1.0,
           "top_title": "Ban hành Quy chế lao động đối với các xí nghiệp có vốn đầu tư nước ngoài"
         },
@@ -142,14 +143,14 @@
           "mrr": 1.0,
           "ndcg@5": 1.0,
           "citation_coverage": 1.0,
-          "top_title": "Ban hành Quy chế lao động đối với các xí nghiệp có vốn đầu tư nước ngoài"
+          "top_title": "Hướng dẫn thực hiện Quyết định 217-HĐBT của Hội đồng Bộ trưởng về lao động - tiền lương và xã hội"
         }
       ]
     },
     "hybrid": {
       "recall@5": 1.0,
       "mrr": 0.9375,
-      "ndcg@5": 0.9599663812504707,
+      "ndcg@5": 0.948056034936355,
       "citation_coverage": 1.0,
       "details": [
         {
@@ -182,7 +183,7 @@
           "mrr": 1.0,
           "ndcg@5": 1.0,
           "citation_coverage": 1.0,
-          "top_title": "Về việc hướng dẫn thực hiện Quyết định số 198/1999/QĐ-TTg ngày 30/9/1999 của Thủ tướng Chính phủ về tiền lương đối với các ban quản lý dự án đầu tư xây dựng."
+          "top_title": "Về mức lương tối thiểu và tiền lương của lao động Việt Nam làm việc trong các doanh nghiệp có vốn đầu tư nước ngoài"
         },
         {
           "question": "Người lao động nước ngoài cần điều kiện gì để làm việc tại Việt Nam?",
@@ -204,7 +205,7 @@
           "question": "Bảo hiểm thất nghiệp hỗ trợ người lao động như thế nào?",
           "recall@5": 1.0,
           "mrr": 1.0,
-          "ndcg@5": 1.0,
+          "ndcg@5": 0.9047172294870751,
           "citation_coverage": 1.0,
           "top_title": "Ban hành Quy chế lao động đối với các xí nghiệp có vốn đầu tư nước ngoài"
         },
@@ -221,7 +222,7 @@
     "hybrid_rrf": {
       "recall@5": 1.0,
       "mrr": 1.0,
-      "ndcg@5": 0.9933628036907468,
+      "ndcg@5": 0.9840231516220306,
       "citation_coverage": 1.0,
       "details": [
         {
@@ -238,13 +239,13 @@
           "mrr": 1.0,
           "ndcg@5": 1.0,
           "citation_coverage": 1.0,
-          "top_title": "Hướng dẫn thực hiện Quyết định 217-HĐBT của Hội đồng Bộ trưởng về lao động - tiền lương và xã hội"
+          "top_title": "Hướng dẫn một số Điều về lao động theo Nghị định số 103/1999/NĐ-CP ngày 10/09/1999 của Chính phủ về giao, bán, khoán kinh doanh, cho thuê doanh nghiệp Nhà nước"
         },
         {
           "question": "Doanh nghiệp có trách nhiệm gì về an toàn vệ sinh lao động?",
           "recall@5": 1.0,
           "mrr": 1.0,
-          "ndcg@5": 0.9469024295259745,
+          "ndcg@5": 0.9674679834891693,
           "citation_coverage": 1.0,
           "top_title": "Về việc tăng cường công tác an toàn vệ sinh lao động và phòng chống cháy nổ"
         },
@@ -254,7 +255,7 @@
           "mrr": 1.0,
           "ndcg@5": 1.0,
           "citation_coverage": 1.0,
-          "top_title": "Về việc hướng dẫn thực hiện Quyết định số 198/1999/QĐ-TTg ngày 30/9/1999 của Thủ tướng Chính phủ về tiền lương đối với các ban quản lý dự án đầu tư xây dựng."
+          "top_title": "Về mức lương tối thiểu và tiền lương của lao động Việt Nam làm việc trong các doanh nghiệp có vốn đầu tư nước ngoài"
         },
         {
           "question": "Người lao động nước ngoài cần điều kiện gì để làm việc tại Việt Nam?",
@@ -276,7 +277,7 @@
           "question": "Bảo hiểm thất nghiệp hỗ trợ người lao động như thế nào?",
           "recall@5": 1.0,
           "mrr": 1.0,
-          "ndcg@5": 1.0,
+          "ndcg@5": 0.9047172294870751,
           "citation_coverage": 1.0,
           "top_title": "Ban hành Quy chế lao động đối với các xí nghiệp có vốn đầu tư nước ngoài"
         },
@@ -293,7 +294,7 @@
     "hybrid_rrf_mmr": {
       "recall@5": 1.0,
       "mrr": 1.0,
-      "ndcg@5": 0.979477493377168,
+      "ndcg@5": 0.9707666041036774,
       "citation_coverage": 1.0,
       "details": [
         {
@@ -310,13 +311,13 @@
           "mrr": 1.0,
           "ndcg@5": 1.0,
           "citation_coverage": 1.0,
-          "top_title": "Hướng dẫn thực hiện Quyết định 217-HĐBT của Hội đồng Bộ trưởng về lao động - tiền lương và xã hội"
+          "top_title": "Hướng dẫn một số Điều về lao động theo Nghị định số 103/1999/NĐ-CP ngày 10/09/1999 của Chính phủ về giao, bán, khoán kinh doanh, cho thuê doanh nghiệp Nhà nước"
         },
         {
           "question": "Doanh nghiệp có trách nhiệm gì về an toàn vệ sinh lao động?",
           "recall@5": 1.0,
           "mrr": 1.0,
-          "ndcg@5": 0.8529278650606567,
+          "ndcg@5": 0.8772153153380493,
           "citation_coverage": 1.0,
           "top_title": "Về việc tăng cường công tác an toàn vệ sinh lao động và phòng chống cháy nổ"
         },
@@ -326,7 +327,7 @@
           "mrr": 1.0,
           "ndcg@5": 1.0,
           "citation_coverage": 1.0,
-          "top_title": "Về việc hướng dẫn thực hiện Quyết định số 198/1999/QĐ-TTg ngày 30/9/1999 của Thủ tướng Chính phủ về tiền lương đối với các ban quản lý dự án đầu tư xây dựng."
+          "top_title": "Về mức lương tối thiểu và tiền lương của lao động Việt Nam làm việc trong các doanh nghiệp có vốn đầu tư nước ngoài"
         },
         {
           "question": "Người lao động nước ngoài cần điều kiện gì để làm việc tại Việt Nam?",
@@ -348,7 +349,7 @@
           "question": "Bảo hiểm thất nghiệp hỗ trợ người lao động như thế nào?",
           "recall@5": 1.0,
           "mrr": 1.0,
-          "ndcg@5": 1.0,
+          "ndcg@5": 0.9060254355346823,
           "citation_coverage": 1.0,
           "top_title": "Ban hành Quy chế lao động đối với các xí nghiệp có vốn đầu tư nước ngoài"
         },
