@@ -10,10 +10,12 @@
   -> select Hybrid RRF from retrieval metrics
 03_ragas_evaluation.ipynb
   -> generate answers with the selected pipeline
-  -> evaluate answer quality with AI Studio Gemini
+  -> evaluate answer quality on an 8-question manual golden-set smoke test
 ```
 
 Experimental retrieval and evaluation code stays in notebooks. Deploy-facing Python code only keeps data preparation, the selected retrieval pipeline, Gemini generation, CLI, and Streamlit UI.
+
+The answer-evaluation report is intentionally scoped as a smoke/regression signal. A broader benchmark should add a reviewed 30-50 question synthetic testset generated with `ragas.testset.TestsetGenerator` or an equivalent curated workflow.
 
 ## Production Pipeline
 

@@ -1,6 +1,9 @@
-# RAGAS-style Evaluation
+# Manual Golden-set RAGAS-style Smoke Evaluation
 
 Evaluator model: `gemini-3.1-flash-lite` via AI Studio `google-genai`.
+Question set: 8 manually curated Vietnamese labor-law questions.
+Scope: smoke/regression check only; these scores are not a statistically robust benchmark.
+Next benchmark step: generate 30-50 synthetic questions with `ragas.testset.TestsetGenerator`, manually review them, freeze the accepted set, then re-run answer evaluation.
 
 | Metric | Score |
 |---|---:|

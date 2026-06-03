@@ -9,7 +9,7 @@ The project follows a notebook-first workflow:
 1. Explore and filter the public Vietnamese legal corpus in `notebooks/01_data_exploration.ipynb`.
 2. Compare retrieval methods in `notebooks/02_retrieval_experiments.ipynb`.
 3. Select the balanced retrieval method from notebook metrics.
-4. Evaluate generated answers in `notebooks/03_ragas_evaluation.ipynb`.
+4. Run the manual golden-set answer smoke evaluation in `notebooks/03_ragas_evaluation.ipynb`.
 5. Keep only the selected pipeline in `src/` for the CLI and Streamlit demo.
 
 The selected retrieval method is Hybrid RRF: BM25 + FAISS vector retrieval with Reciprocal Rank Fusion.
@@ -49,11 +49,13 @@ notebooks/02_retrieval_experiments.ipynb
 notebooks/03_ragas_evaluation.ipynb
 ```
 
-`02_retrieval_experiments.ipynb` contains BM25, vector, weighted hybrid, Hybrid RRF, MMR, and retrieval metrics directly in the notebook. `03_ragas_evaluation.ipynb` contains answer generation and RAGAS-style AI Studio evaluation directly in the notebook.
+`02_retrieval_experiments.ipynb` contains BM25, vector, weighted hybrid, Hybrid RRF, MMR, and retrieval metrics directly in the notebook. `03_ragas_evaluation.ipynb` contains answer generation and RAGAS-style AI Studio evaluation for an 8-question manually curated golden set.
 
 The deploy-facing Python code does not contain experimental methods.
 
 Notebook 02 defaults to a fast TF-IDF smoke-test fallback. Set `USE_TFIDF_FALLBACK=false` before running it to generate the production comparison report with multilingual sentence embeddings and FAISS.
+
+The notebook 03 scores are smoke/regression signals, not a full benchmark. For a stronger benchmark, generate 30-50 synthetic questions with `ragas.testset.TestsetGenerator`, manually review the generated questions, freeze the accepted set, and then run the same answer-quality metrics.
 
 ## CLI
 
