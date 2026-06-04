@@ -1,9 +1,6 @@
 # Processed Data
 
-Run the corpus builder from the repository root:
+Run `notebooks/01_data_exploration.ipynb` to generate `data/processed/labor_corpus.jsonl`.
 
-```bash
-python -m src.data.build_corpus
-```
-
-This generates `data/processed/labor_corpus.jsonl`. The generated JSONL corpus is ignored by Git because the full filtered dataset is large.
+The notebook filters the public corpus with Gemini and caches classification decisions under `reports/`.
+The generated JSONL corpus is ignored by Git because the full filtered dataset is large.

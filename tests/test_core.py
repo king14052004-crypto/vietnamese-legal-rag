@@ -2,30 +2,27 @@ import unittest
 from unittest.mock import patch
 
 from src.data.chunking import split_by_article_or_window
-from src.data.filter_labor import is_labor_related
 from src.data.schema import LegalChunk, LegalDocument, SearchResult
+from src.generation.gemini_client import BatchGeminiClient
 from src.generation.prompt import build_context
 from src.retrieval.pipeline import RetrievalPipeline
 
 
 class DataPreparationTests(unittest.TestCase):
-    def test_labor_filter_accepts_strong_phrase(self) -> None:
-        document = LegalDocument(
-            id="labor",
-            content_text="Quy định về hợp đồng lao động.",
-        )
-        self.assertTrue(is_labor_related(document))
-
-    def test_labor_filter_rejects_unrelated_document(self) -> None:
-        document = LegalDocument(id="other", title="Quy hoạch sử dụng đất")
-        self.assertFalse(is_labor_related(document))
-
     def test_article_chunking_keeps_article_labels(self) -> None:
         text = "Điều 1. Nội dung thứ nhất. Điều 2. Nội dung thứ hai."
         self.assertEqual(
             split_by_article_or_window(text),
             [("Điều 1", "Điều 1. Nội dung thứ nhất."), ("Điều 2", "Điều 2. Nội dung thứ hai.")],
         )
+
+
+class GeminiClientTests(unittest.TestCase):
+    def test_default_rate_limit_stays_below_15_rpm_per_key(self) -> None:
+        client = BatchGeminiClient(api_keys=["key-a", "key-b"])
+
+        self.assertGreaterEqual(client.sleep_seconds, 5.0)
+        self.assertEqual(set(client._last_request_at), {"key-a", "key-b"})
 
 
 class RetrievalPipelineTests(unittest.TestCase):

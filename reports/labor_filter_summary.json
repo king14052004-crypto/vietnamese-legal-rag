@@ -1,0 +1,16 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "prompt_version": "labor_filter_v1",
+  "rpm_per_key": 12,
+  "daily_request_buffer_per_key": 450,
+  "batch_size": 120,
+  "max_content_chars": 500,
+  "confidence_threshold": 0.7,
+  "total_documents": 146857,
+  "cached_decisions": 146857,
+  "new_decisions": 0,
+  "missing_decisions": 0,
+  "accepted": 17379,
+  "completed": true,
+  "output_written": true
+}

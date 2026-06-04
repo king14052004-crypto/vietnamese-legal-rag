@@ -4,7 +4,7 @@
 
 ```text
 01_data_exploration.ipynb
-  -> explore corpus and filtering
+  -> filter corpus with Gemini
 02_retrieval_experiments.ipynb
   -> compare BM25 / vector / weighted hybrid / Hybrid RRF / MMR
   -> select the retrieval method with a fixed score over retrieval and RAGAS context metrics
@@ -13,14 +13,14 @@
   -> evaluate answer quality on the frozen RAGAS-generated benchmark
 ```
 
-Experimental retrieval and evaluation code stays in notebooks. Deploy-facing Python code only keeps data preparation, the selected retrieval pipeline, Gemini generation, CLI, and Streamlit UI.
+Experimental filtering, retrieval, and evaluation code stays in notebooks. Deploy-facing Python code only keeps data loading, chunking, the selected retrieval pipeline, Gemini generation, CLI, and Streamlit UI.
 
 The evaluation workflow freezes RAGAS-generated synthetic benchmark questions in `reports/ragas_questions.json`, compares retrieval methods in notebook 02, then runs `ragas.evaluate()` answer metrics in notebook 03. Cached artifacts are marked explicitly when Gemini quota or keys are unavailable.
 
 ## Production Pipeline
 
 ```text
-Filtered Vietnamese labor-law corpus
+Gemini-filtered Vietnamese labor-law corpus
   -> legal-aware chunks
   -> BM25 index
   -> optional FAISS vector index for embedding experiments

@@ -6,13 +6,13 @@ Portfolio project for Vietnamese labor-law Retrieval-Augmented Generation.
 
 The project follows a notebook-first workflow:
 
-1. Explore and filter the public Vietnamese legal corpus in `notebooks/01_data_exploration.ipynb`.
+1. Filter the public Vietnamese legal corpus with Gemini in `notebooks/01_data_exploration.ipynb`.
 2. Compare retrieval methods in `notebooks/02_retrieval_experiments.ipynb`.
 3. Select the balanced retrieval method from notebook metrics.
 4. Generate answers and run RAGAS answer evaluation in `notebooks/03_ragas_evaluation.ipynb`.
 5. Keep only the selected pipeline in `src/` for the CLI and Streamlit demo.
 
-The current notebook-selected retrieval method is weighted `hybrid`: BM25 + TF-IDF/FAISS vector retrieval selected by a fixed score over lexical retrieval metrics and RAGAS context metrics. The CLI and Streamlit demo use a memory-aware local fallback on the full generated corpus so the project runs reliably without prebuilt vector artifacts.
+The current notebook-selected retrieval method is weighted `hybrid`: BM25 + TF-IDF/FAISS vector retrieval selected by a fixed score over lexical retrieval metrics and RAGAS context metrics. The CLI and Streamlit demo use a memory-aware local fallback on the generated corpus so the project runs reliably without prebuilt vector artifacts.
 
 ## Setup
 
@@ -33,11 +33,8 @@ Primary corpus:
 
 - https://huggingface.co/datasets/th1nhng0/vietnamese-legal-documents
 
-Regenerate the filtered labor-law corpus:
-
-```bash
-python -m src.data.build_corpus
-```
+Regenerate the filtered labor-law corpus by running `notebooks/01_data_exploration.ipynb`.
+The notebook uses `gemini-3.1-flash-lite` as a cached classifier with a conservative `12 RPM/key` limit.
 
 The generated `data/processed/labor_corpus.jsonl` file is ignored by Git because the full filtered corpus is large.
 
@@ -86,7 +83,7 @@ The UI starts in retrieval-only mode so it works without a Gemini key. Enable Ge
 - Vector backend: FAISS for embedding experiments
 - Embedding model: `intfloat/multilingual-e5-small`
 - LLM: `gemini-3.1-flash-lite`
-- API key strategy: round-robin over `GEMINI_API_KEYS`
+- API key strategy: round-robin over `GEMINI_API_KEYS` with per-key rate limiting
 - UI: Streamlit
 
 ## Legal Disclaimer
