@@ -15,7 +15,7 @@
 
 Experimental retrieval and evaluation code stays in notebooks. Deploy-facing Python code only keeps data preparation, the selected retrieval pipeline, Gemini generation, CLI, and Streamlit UI.
 
-The evaluation workflow freezes a RAGAS-generated synthetic testset in `reports/ragas_testset.json`, compares retrieval methods in notebook 02, then runs `ragas.evaluate()` answer metrics in notebook 03. Cached artifacts are marked explicitly when Gemini quota or keys are unavailable.
+The evaluation workflow freezes RAGAS-generated synthetic benchmark questions in `reports/ragas_questions.json`, compares retrieval methods in notebook 02, then runs `ragas.evaluate()` answer metrics in notebook 03. Cached artifacts are marked explicitly when Gemini quota or keys are unavailable.
 
 ## Production Pipeline
 

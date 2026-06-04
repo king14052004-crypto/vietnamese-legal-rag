@@ -51,13 +51,13 @@ notebooks/02_retrieval_experiments.ipynb
 notebooks/03_ragas_evaluation.ipynb
 ```
 
-`02_retrieval_experiments.ipynb` compares `bm25`, `vector`, `hybrid`, `hybrid_rrf`, and `hybrid_rrf_mmr` on the frozen RAGAS-generated testset. It writes tables plus bar chart and heatmap artifacts under `reports/`.
+`02_retrieval_experiments.ipynb` compares `bm25`, `vector`, `hybrid`, `hybrid_rrf`, and `hybrid_rrf_mmr` on the frozen RAGAS-generated benchmark questions. It writes tables plus bar chart and heatmap artifacts under `reports/`.
 
 `03_ragas_evaluation.ipynb` generates answers with the selected retriever and evaluates them with `ragas.evaluate()` using context precision, context recall, faithfulness, answer relevancy, and answer correctness.
 
 The deploy-facing Python code does not contain experimental branches.
 
-The benchmark testset is frozen in `reports/ragas_testset.json`. When Gemini quota or keys are unavailable, the notebooks load existing cached artifacts and mark cache usage in the report instead of pretending to run a fresh evaluation.
+The benchmark questions are frozen in `reports/ragas_questions.json`. When Gemini quota or keys are unavailable, the notebooks load existing cached artifacts and mark cache usage in the report instead of pretending to run a fresh evaluation.
 
 ## CLI
 

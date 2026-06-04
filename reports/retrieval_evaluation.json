@@ -1,5 +1,5 @@
 {
-  "testset_size": 30,
+  "question_count": 30,
   "num_chunks": 3500,
   "methods": [
     "bm25",

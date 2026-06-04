@@ -1,6 +1,6 @@
 # Retrieval Evaluation
 
-- Testset size: `30`
+- Question count: `30`
 - Benchmark chunks: `3500`
 - RAGAS retrieval metrics backend: `ragas_evaluate_non_llm`
 - Selected method: `hybrid`

@@ -8,210 +8,210 @@
       "question": "Theo quy định tại CHƯƠNG VI thì khi xí nghiệp liên doanh giải thể, hội đồng quản trị cần phải thực hiện những nghĩa vụ gì đối với người lao động và các bên liên quan?",
       "reference": "Khi giải thể, xí nghiệp phải thực hiện các nghĩa vụ sau: thanh toán vốn, tài sản; giải quyết hợp đồng lao động với cán bộ, công nhân, viên chức; thanh toán các hợp đồng đã ký kết; và báo cáo với cấp đã xét duyệt đăng ký kinh doanh để giải quyết thủ tục giải thể theo đúng pháp luật hiện hành.",
       "topic": "single_hop_specific_query_synthesizer",
-      "source": "ragas_testset_generator"
+      "source": "ragas_generator"
     },
     {
       "id": "ragas_002",
       "question": "Quy trình giải thể Xí nghiệp liên doanh được quy định như thế nào khi gặp thua lỗ?",
       "reference": "Khi Xí nghiệp liên doanh hoạt động sản xuất kinh doanh thua lỗ và cần giải thể, Hội đồng quản trị phải bàn bạc và quyết định việc giải thể. Trong quá trình này, xí nghiệp có trách nhiệm thanh toán vốn, tài sản, giải quyết hợp đồng lao động với cán bộ, công nhân, viên chức; thanh toán các hợp đồng đã ký kết; đồng thời báo cáo với cấp đã xét duyệt đăng ký kinh doanh để thực hiện các thủ tục giải thể theo đúng pháp luật hiện hành.",
       "topic": "single_hop_specific_query_synthesizer",
-      "source": "ragas_testset_generator"
+      "source": "ragas_generator"
     },
     {
       "id": "ragas_003",
       "question": "Khi nào thì hội đồng quản trị của xí nghiệp liên doanh phải họp bàn và quyết định việc giải thể theo quy định, và họ cần làm gì khi giải thể ạ?",
       "reference": "Theo quy định, Hội đồng quản trị Xí nghiệp liên doanh phải bàn bạc và quyết định việc giải thể khi hoạt động sản xuất kinh doanh bị thua lỗ hoặc khi có quá một nửa số chủ hộ có cổ phần đề nghị giải thể. Khi thực hiện giải thể, xí nghiệp có trách nhiệm thanh toán vốn, tài sản, giải quyết hợp đồng lao động với cán bộ, công nhân, viên chức; thanh toán các hợp đồng đã ký kết; đồng thời phải báo cáo với cấp đã xét duyệt đăng ký kinh doanh để giải quyết các thủ tục giải thể theo đúng pháp luật hiện hành.",
       "topic": "single_hop_specific_query_synthesizer",
-      "source": "ragas_testset_generator"
+      "source": "ragas_generator"
     },
     {
       "id": "ragas_004",
       "question": "CHƯƠNG VI nói về cái gì vậy ạ?",
       "reference": "CHƯƠNG VI quy định về ĐIỀU KHOẢN THI HÀNH.",
       "topic": "single_hop_specific_query_synthesizer",
-      "source": "ragas_testset_generator"
+      "source": "ragas_generator"
     },
     {
       "id": "ragas_005",
       "question": "anh oi cho hoi cai Nghị định số 103/1999/NĐ-CP thi khi ma doanh nghiep to chuc lai hoat dong san xuat kinh doanh hay thay doi cong nghe thi nguoi lao dong co duoc huong che do gi khong a?",
       "reference": "Theo quy định tại Nghị định số 103/1999/NĐ-CP, trong trường hợp doanh nghiệp tổ chức lại hoạt động sản xuất kinh doanh hoặc thay đổi công nghệ dẫn đến người lao động bị ảnh hưởng, các chế độ được hưởng sẽ được thực hiện theo quy định tại mục IV của văn bản này.",
       "topic": "single_hop_specific_query_synthesizer",
-      "source": "ragas_testset_generator"
+      "source": "ragas_generator"
     },
     {
       "id": "ragas_006",
       "question": "Theo Nghị định số 103/1999/NĐ-CP của Chính phủ, các văn bản do người được giao, người mua, người nhận khoán hoặc người thuê lập cần tuân thủ những nguyên tắc nào để đảm bảo quyền lợi cho người lao động?",
       "reference": "Các văn bản do người được giao, người mua, người nhận khoán, người thuê lập dựa trên hướng phát triển của doanh nghiệp phải đảm bảo quyền lợi và nghĩa vụ của hai bên là người sử dụng lao động và người lao động theo quy định của pháp luật lao động.",
       "topic": "single_hop_specific_query_synthesizer",
-      "source": "ragas_testset_generator"
+      "source": "ragas_generator"
     },
     {
       "id": "ragas_007",
       "question": "Nghị định số 103/1999/NĐ-CP quy định gì về việc lập kế hoạch phát triển doanh nghiệp?",
       "reference": "Theo Nghị định số 103/1999/NĐ-CP, người được giao, người mua, người nhận khoán, người thuê có trách nhiệm lập kế hoạch dựa trên hướng phát triển của doanh nghiệp, đồng thời phải đảm bảo quyền lợi và nghĩa vụ của cả người sử dụng lao động và người lao động theo quy định của pháp luật lao động.",
       "topic": "single_hop_specific_query_synthesizer",
-      "source": "ragas_testset_generator"
+      "source": "ragas_generator"
     },
     {
       "id": "ragas_008",
       "question": "Khi các bên lập phương án dựa trên hướng phát triển của doanh nghiệp theo quy định tại Nghị định số 103/1999/NĐ-CP, những yếu tố nào cần phải được đảm bảo để tuân thủ đúng pháp luật lao động?",
       "reference": "Theo Nghị định số 103/1999/NĐ-CP, khi người được giao, người mua, người nhận khoán hoặc người thuê lập phương án dựa trên hướng phát triển của doanh nghiệp, họ phải đảm bảo quyền lợi và nghĩa vụ của cả hai bên là người sử dụng lao động và người lao động theo đúng quy định của pháp luật lao động.",
       "topic": "single_hop_specific_query_synthesizer",
-      "source": "ragas_testset_generator"
+      "source": "ragas_generator"
     },
     {
       "id": "ragas_009",
       "question": "UBND TỈNH LÂM ĐỒNG đã đánh giá như thế nào về tình hình quản lý hoạt động dạy nghề tại các tổ chức và doanh nghiệp trên địa bàn tỉnh?",
       "reference": "Theo chỉ thị của UBND TỈNH LÂM ĐỒNG, mặc dù hoạt động dạy nghề đã có bước phát triển và đáp ứng phần nào nhu cầu của người lao động, nhưng công tác quản lý vẫn còn tồn tại. Cụ thể, hoạt động dạy nghề tại các tổ chức, doanh nghiệp, trường, trung tâm và cơ sở của các tổ chức, cá nhân hiện chưa được quản lý một cách chặt chẽ và đồng bộ.",
       "topic": "single_hop_specific_query_synthesizer",
-      "source": "ragas_testset_generator"
+      "source": "ragas_generator"
     },
     {
       "id": "ragas_010",
       "question": "Theo chỉ thị của UBND tỉnh Lâm Đồng, tình hình quản lý hoạt động dạy nghề trên địa bàn tỉnh hiện nay đang gặp phải những hạn chế gì?",
       "reference": "Theo chỉ thị của UBND tỉnh Lâm Đồng, công tác quản lý đào tạo nghề vẫn còn một số tồn tại, cụ thể là hoạt động dạy nghề tại các tổ chức, doanh nghiệp, trường, trung tâm và cơ sở của các tổ chức, cá nhân chưa được quản lý một cách chặt chẽ và đồng bộ.",
       "topic": "single_hop_specific_query_synthesizer",
-      "source": "ragas_testset_generator"
+      "source": "ragas_generator"
     },
     {
       "id": "ragas_011",
       "question": "Theo chỉ thị của UBND tỉnh Lâm Đồng, tình hình đào tạo nghề và chất lượng lao động tại Lam Dong đã có những thay đổi cụ thể nào trong giai đoạn từ năm 1996 đến năm 1999?",
       "reference": "Trong giai đoạn từ năm 1996 đến năm 1999, hoạt động dạy nghề trên địa bàn tỉnh Lâm Đồng đã có bước phát triển, đáp ứng phần nào nhu cầu học nghề của người lao động. Cụ thể, tỷ lệ lao động qua đào tạo đã được nâng từ 13,5% vào năm 1996 lên 16,5% vào năm 1999.",
       "topic": "single_hop_specific_query_synthesizer",
-      "source": "ragas_testset_generator"
+      "source": "ragas_generator"
     },
     {
       "id": "ragas_012",
       "question": "Theo chỉ thị của UBNND TỈNH LÂM ĐỒNG, tình hình thực trạng quản lý hoạt động dạy nghề tại các tổ chức và doanh nghiệp trên địa bàn tỉnh hiện nay đang gặp phải những vấn đề gì?",
       "reference": "Theo chỉ thị của UBND tỉnh Lâm Đồng, công tác quản lý hoạt động dạy nghề tại các tổ chức, doanh nghiệp, trường, trung tâm, cơ sở của các tổ chức và cá nhân hiện chưa được thực hiện một cách chặt chẽ và đồng bộ.",
       "topic": "single_hop_specific_query_synthesizer",
-      "source": "ragas_testset_generator"
+      "source": "ragas_generator"
     },
     {
       "id": "ragas_013",
       "question": "Nghị định số 103/1999/NĐ-CP quy định về vấn đề gì?",
       "reference": "Nghị định số 103/1999/NĐ-CP ngày 10/09/1999 của Chính phủ quy định về việc giao, bán, khoán kinh doanh, cho thuê doanh nghiệp Nhà nước.",
       "topic": "single_hop_specific_query_synthesizer",
-      "source": "ragas_testset_generator"
+      "source": "ragas_generator"
     },
     {
       "id": "ragas_014",
       "question": "cái Chính phủ ban hành Nghị định số 103/1999/NĐ-CP ngày 10/09/1999 về vấn đề gì thế?",
       "reference": "Chính phủ ban hành Nghị định số 103/1999/NĐ-CP ngày 10/09/1999 về việc giao, bán, khoán kinh doanh, cho thuê doanh nghiệp Nhà nước.",
       "topic": "single_hop_specific_query_synthesizer",
-      "source": "ragas_testset_generator"
+      "source": "ragas_generator"
     },
     {
       "id": "ragas_015",
       "question": "Đối tượng nào được áp dụng chính sách lao động theo Nghị định số 103/1999/NĐ-CP?",
       "reference": "Theo hướng dẫn của Bộ Lao động-Thương binh và Xã hội, đối tượng áp dụng chính sách lao động theo Nghị định số 103/1999/NĐ-CP là người lao động làm việc trong các doanh nghiệp Nhà nước thực hiện giao, bán, khoán kinh doanh, cho thuê tại thời điểm thực hiện các hình thức này.",
       "topic": "single_hop_specific_query_synthesizer",
-      "source": "ragas_testset_generator"
+      "source": "ragas_generator"
     },
     {
       "id": "ragas_016",
       "question": "Văn bản này hướng dẫn thực hiện các quy định về lao động dựa trên nghị định nào của Chính phủ?",
       "reference": "Văn bản này hướng dẫn thực hiện các quy định về lao động dựa trên Nghị định số 103/1999/NĐ-CP ngày 10/09/1999 của Chính phủ về giao, bán, khoán kinh doanh, cho thuê doanh nghiệp Nhà nước.",
       "topic": "single_hop_specific_query_synthesizer",
-      "source": "ragas_testset_generator"
+      "source": "ragas_generator"
     },
     {
       "id": "ragas_017",
       "question": "Theo quy định tại Điều 39, thân nhân của công nhân sẽ được hưởng quyền lợi gì nếu công nhân đó tử vong do tai nạn lao động?",
       "reference": "Nếu công nhân chết vì một tai nạn lao động, vợ chồng hoặc con của công nhân đó được hưởng một khoản tiền bằng một năm lương có phụ cấp gia đình, được tính căn cứ theo mức lương tháng cuối cùng mà công nhân đó nhận được.",
       "topic": "single_hop_specific_query_synthesizer",
-      "source": "ragas_testset_generator"
+      "source": "ragas_generator"
     },
     {
       "id": "ragas_018",
       "question": "Theo quy định tại Điều 39, gia đình của công nhân sẽ được hưởng quyền lợi gì nếu công nhân đó không may tử vong do tai nạn lao động?",
       "reference": "Nếu công nhân chết vì một tai nạn lao động, vợ chồng hoặc con của công nhân đó được hưởng một khoản tiền bằng một năm lương có phụ cấp gia đình, được tính căn cứ theo mức lương tháng cuối cùng mà công nhân nhận được.",
       "topic": "single_hop_specific_query_synthesizer",
-      "source": "ragas_testset_generator"
+      "source": "ragas_generator"
     },
     {
       "id": "ragas_019",
       "question": "theo Điều 39 thì nếu công nhân chết tai nạn lao động thì vợ chồng con được hưởng gì?",
       "reference": "Nếu công nhân chết vì một tai nạn lao động, vợ chồng hoặc con được hưởng một khoản tiền bằng một năm lương có phụ cấp gia đình, được tính căn cứ theo lương tháng cuối cùng mà công nhân nhận.",
       "topic": "single_hop_specific_query_synthesizer",
-      "source": "ragas_testset_generator"
+      "source": "ragas_generator"
     },
     {
       "id": "ragas_020",
       "question": "Quy định về việc tuyển dụng lại đối với công nhân bị kỷ luật bởi Chính phủ?",
       "reference": "Theo quy định, công nhân bị thải hồi vì phạm kỷ luật sẽ không được tuyển dụng lại vào bất kỳ cơ quan nào khác của Chính phủ. Đối với trường hợp công nhân bị thải hồi vì phạm hình luật, việc có được tuyển dụng lại hay không sẽ tùy thuộc vào từng trường hợp cụ thể.",
       "topic": "single_hop_specific_query_synthesizer",
-      "source": "ragas_testset_generator"
+      "source": "ragas_generator"
     },
     {
       "id": "ragas_021",
       "question": "Điều 34 nói gì về thôi việc vì thiếu sức khoẻ?",
       "reference": "Theo Điều 34, công nhân không đủ sức khoẻ để tiếp tục công việc sẽ phải thôi việc dựa trên đề nghị của Hội đồng Giám định y khoa.",
       "topic": "single_hop_specific_query_synthesizer",
-      "source": "ragas_testset_generator"
+      "source": "ragas_generator"
     },
     {
       "id": "ragas_022",
       "question": "Theo Điều 32, công nhân cần thực hiện thủ tục gì khi muốn xin thôi việc?",
       "reference": "Theo Điều 32, công nhân muốn xin thôi việc phải làm đơn trước hai tháng. Tuy nhiên, cơ quan quản trị có thể không chấp nhận đơn xin thôi việc tùy thuộc vào nhu cầu công việc.",
       "topic": "single_hop_specific_query_synthesizer",
-      "source": "ragas_testset_generator"
+      "source": "ragas_generator"
     },
     {
       "id": "ragas_023",
       "question": "Dieu 33 quy dinh gi ve viec xin thoi viec cua cong nhan dang bi truy to?",
       "reference": "Theo Điều 33, những công nhân phạm lỗi đang bị cấp chỉ huy đề nghị trừng phạt hoặc truy tố trước toà án thì không được xin thôi việc ngay, mà phải đợi quyết định của cơ quan quản trị hoặc bản án của toà án.",
       "topic": "single_hop_specific_query_synthesizer",
-      "source": "ragas_testset_generator"
+      "source": "ragas_generator"
     },
     {
       "id": "ragas_024",
       "question": "Theo Điều 34 thì khi nào công nhân phải thôi việc vì thiếu sức khoẻ?",
       "reference": "Theo Điều 34, công nhân không đủ sức khoẻ để tiếp tục công việc sẽ phải thôi việc theo đề nghị của Hội đồng Giám định y khoa.",
       "topic": "single_hop_specific_query_synthesizer",
-      "source": "ragas_testset_generator"
+      "source": "ragas_generator"
     },
     {
       "id": "ragas_025",
       "question": "Cho em hoi la UBNN tinh co trach nhiem gi trong viec phoi hop voi nganh LĐ-TB & XH de ho tro viec dao tao nghe va viec lam cho nguoi tan tat khong a?",
       "reference": "Theo quy định, UBND tỉnh có trách nhiệm phối hợp với ngành LĐ-TB & XH và các ngành liên quan để triển khai xây dựng kế hoạch đào tạo nghề chung của tỉnh. Đồng thời, UBND tỉnh cũng thực hiện xây dựng quy chế thành lập và quản lý quỹ việc làm và dạy nghề dành riêng cho người tàn tật theo quy định tại nghị định 81/CP ngày 23/11/1995 của Chính phủ.",
       "topic": "single_hop_specific_query_synthesizer",
-      "source": "ragas_testset_generator"
+      "source": "ragas_generator"
     },
     {
       "id": "ragas_026",
       "question": "Cục quản lý vốn & TSNN có vai trò gì trong việc đào tạo nghề tại doanh nghiệp theo quy định?",
       "reference": "Theo quy định, Cục quản lý vốn & TSNN cùng với ngành Lao động Thương binh và Xã hội có trách nhiệm hướng dẫn các doanh nghiệp lập kế hoạch và tổ chức thi nâng bậc cho người lao động, trong khuôn khổ kế hoạch bồi dưỡng, đào tạo mới và đào tạo lại nghề hàng năm với mức kinh phí ít nhất 2% trên tổng quỹ lương của doanh nghiệp.",
       "topic": "single_hop_specific_query_synthesizer",
-      "source": "ragas_testset_generator"
+      "source": "ragas_generator"
     },
     {
       "id": "ragas_027",
       "question": "Vai trò của Cục quản lý vốn & TSNN trong đào tạo nghề tại doanh nghiệp là gì?",
       "reference": "Cục quản lý vốn & TSNN phối hợp với ngành Lao động Thương binh và Xã hội để hướng dẫn các doanh nghiệp lập kế hoạch và tổ chức thi nâng bậc cho người lao động.",
       "topic": "single_hop_specific_query_synthesizer",
-      "source": "ragas_testset_generator"
+      "source": "ragas_generator"
     },
     {
       "id": "ragas_028",
       "question": "Cty em phai chi bao nhieu % quy luong cho LD-TB & XH de dao tao nghe?",
       "reference": "Theo quy định, các doanh nghiệp trên địa bàn tỉnh phải xây dựng kế hoạch bồi dưỡng, đào tạo mới và đào tạo lại nghề hàng năm cho người lao động với mức kinh phí ít nhất 2% trên tổng quỹ lương của doanh nghiệp theo hướng dẫn của ngành Lao động Thương binh và Xã hội.",
       "topic": "single_hop_specific_query_synthesizer",
-      "source": "ragas_testset_generator"
+      "source": "ragas_generator"
     },
     {
       "id": "ragas_029",
       "question": "Sở Lao động liên khu có nhiệm vụ gì trong việc giải quyết mâu thuẫn giữa chủ và thợ?",
       "reference": "Trong phạm vi liên khu, Sở Lao động liên khu có nhiệm vụ giải quyết và dàn xếp những sự xích mích giữa chủ và công nhân.",
       "topic": "single_hop_specific_query_synthesizer",
-      "source": "ragas_testset_generator"
+      "source": "ragas_generator"
     },
     {
       "id": "ragas_030",
       "question": "Cho em hoi la cai Sở Lao động liên khu no co nhiem vu gi trong viec giai quyet mau thuan giua chu voi cong nhan khong a?",
       "reference": "Theo quy định, Sở Lao động liên khu có nhiệm vụ giải quyết và dàn xếp những sự xích mích giữa chủ và công nhân.",
       "topic": "single_hop_specific_query_synthesizer",
-      "source": "ragas_testset_generator"
+      "source": "ragas_generator"
     }
   ]
 }
