@@ -41,5 +41,17 @@ def _load_api_keys_from_env() -> list[str]:
     from dotenv import find_dotenv, load_dotenv
 
     load_dotenv(find_dotenv(usecwd=True))
-    keys = os.getenv("GEMINI_API_KEYS") or os.getenv("GEMINI_API_KEY") or ""
-    return [key.strip() for key in keys.split(",") if key.strip()]
+    raw_values = [
+        os.getenv("GOOGLE_API_KEY") or "",
+        os.getenv("GEMINI_API_KEY") or "",
+        os.getenv("GEMINI_API_KEYS") or "",
+    ]
+    keys = []
+    seen = set()
+    for raw_value in raw_values:
+        for key in raw_value.split(","):
+            key = key.strip()
+            if key and key not in seen:
+                keys.append(key)
+                seen.add(key)
+    return keys

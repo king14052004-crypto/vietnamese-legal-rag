@@ -7,15 +7,15 @@
   -> explore corpus and filtering
 02_retrieval_experiments.ipynb
   -> compare BM25 / vector / weighted hybrid / Hybrid RRF / MMR
-  -> select Hybrid RRF from retrieval metrics
+  -> select the retrieval method with a fixed score over retrieval and RAGAS context metrics
 03_ragas_evaluation.ipynb
   -> generate answers with the selected pipeline
-  -> evaluate answer quality on an 8-question manual golden-set smoke test
+  -> evaluate answer quality on the frozen RAGAS-generated benchmark
 ```
 
 Experimental retrieval and evaluation code stays in notebooks. Deploy-facing Python code only keeps data preparation, the selected retrieval pipeline, Gemini generation, CLI, and Streamlit UI.
 
-The answer-evaluation report is intentionally scoped as a smoke/regression signal. A broader benchmark should add a reviewed 30-50 question synthetic testset generated with `ragas.testset.TestsetGenerator` or an equivalent curated workflow.
+The evaluation workflow freezes a RAGAS-generated synthetic testset in `reports/ragas_testset.json`, compares retrieval methods in notebook 02, then runs `ragas.evaluate()` answer metrics in notebook 03. Cached artifacts are marked explicitly when Gemini quota or keys are unavailable.
 
 ## Production Pipeline
 
@@ -24,20 +24,20 @@ Filtered Vietnamese labor-law corpus
   -> legal-aware chunks
   -> BM25 index
   -> optional FAISS vector index for embedding experiments
-  -> Reciprocal Rank Fusion
+  -> selected hybrid retrieval
   -> grounded Gemini answer with citations
   -> CLI / Streamlit UI
 ```
 
 ## Selected Retrieval Method
 
-Hybrid RRF is the notebook-selected retrieval method because it combines:
+The selected notebook retriever is the method with the highest fixed selection score. The compared retrievers combine:
 
 - exact legal terminology recall from BM25,
 - semantic matching from multilingual sentence embeddings and FAISS,
 - stable rank-level fusion without score-scale normalization.
 
-Weighted fusion and MMR remain notebook experiments, not production branches. The local CLI/UI uses a memory-aware fallback on very large chunk sets so the full generated corpus can run on a laptop without hardcoded query terms or a prebuilt vector index.
+Weighted fusion, RRF, and MMR remain notebook experiments, not production branches. The local CLI/UI uses a memory-aware fallback on very large chunk sets so the full generated corpus can run on a laptop without hardcoded query terms or a prebuilt vector index.
 
 ## CLI / UI
 

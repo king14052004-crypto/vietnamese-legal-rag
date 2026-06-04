@@ -9,10 +9,10 @@ The project follows a notebook-first workflow:
 1. Explore and filter the public Vietnamese legal corpus in `notebooks/01_data_exploration.ipynb`.
 2. Compare retrieval methods in `notebooks/02_retrieval_experiments.ipynb`.
 3. Select the balanced retrieval method from notebook metrics.
-4. Run the manual golden-set answer smoke evaluation in `notebooks/03_ragas_evaluation.ipynb`.
+4. Generate answers and run RAGAS answer evaluation in `notebooks/03_ragas_evaluation.ipynb`.
 5. Keep only the selected pipeline in `src/` for the CLI and Streamlit demo.
 
-The notebook-selected retrieval method is Hybrid RRF: BM25 + FAISS vector retrieval with Reciprocal Rank Fusion. The CLI and Streamlit demo use a memory-aware local fallback on the full generated corpus so the project runs reliably without prebuilt vector artifacts.
+The current notebook-selected retrieval method is weighted `hybrid`: BM25 + TF-IDF/FAISS vector retrieval selected by a fixed score over lexical retrieval metrics and RAGAS context metrics. The CLI and Streamlit demo use a memory-aware local fallback on the full generated corpus so the project runs reliably without prebuilt vector artifacts.
 
 ## Setup
 
@@ -51,13 +51,13 @@ notebooks/02_retrieval_experiments.ipynb
 notebooks/03_ragas_evaluation.ipynb
 ```
 
-`02_retrieval_experiments.ipynb` contains BM25, vector, weighted hybrid, Hybrid RRF, MMR, and retrieval metrics directly in the notebook. `03_ragas_evaluation.ipynb` contains answer generation and RAGAS-style AI Studio evaluation for an 8-question manually curated golden set.
+`02_retrieval_experiments.ipynb` compares `bm25`, `vector`, `hybrid`, `hybrid_rrf`, and `hybrid_rrf_mmr` on the frozen RAGAS-generated testset. It writes tables plus bar chart and heatmap artifacts under `reports/`.
 
-The deploy-facing Python code does not contain experimental methods.
+`03_ragas_evaluation.ipynb` generates answers with the selected retriever and evaluates them with `ragas.evaluate()` using context precision, context recall, faithfulness, answer relevancy, and answer correctness.
 
-Notebook 02 defaults to a fast TF-IDF smoke-test fallback. Set `USE_TFIDF_FALLBACK=false` before running it to generate the production comparison report with multilingual sentence embeddings and FAISS.
+The deploy-facing Python code does not contain experimental branches.
 
-The notebook 03 scores are smoke/regression signals, not a full benchmark. For a stronger benchmark, generate 30-50 synthetic questions with `ragas.testset.TestsetGenerator`, manually review the generated questions, freeze the accepted set, and then run the same answer-quality metrics.
+The benchmark testset is frozen in `reports/ragas_testset.json`. When Gemini quota or keys are unavailable, the notebooks load existing cached artifacts and mark cache usage in the report instead of pretending to run a fresh evaluation.
 
 ## CLI
 
@@ -81,7 +81,7 @@ The UI starts in retrieval-only mode so it works without a Gemini key. Enable Ge
 
 ## Selected Deploy Configuration
 
-- Retrieval: Hybrid RRF experiments in notebooks; memory-aware local retrieval in CLI/UI
+- Retrieval: notebook-selected hybrid retrieval; memory-aware local retrieval in CLI/UI
 - Sparse retrieval: BM25 / memory-aware keyword scan for large local corpora
 - Vector backend: FAISS for embedding experiments
 - Embedding model: `intfloat/multilingual-e5-small`

@@ -5,6 +5,8 @@ from src.data.chunking import split_by_article_or_window
 from src.data.filter_labor import is_labor_related
 from src.data.schema import LegalChunk, LegalDocument, SearchResult
 from src.generation.prompt import build_context
+from src.evaluation.retrieval_benchmark import selection_score
+from src.evaluation.testset import fallback_testset
 from src.retrieval.pipeline import RetrievalPipeline
 
 
@@ -50,7 +52,7 @@ class RetrievalPipelineTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             RetrievalPipeline([], use_tfidf_fallback=True)
 
-    def test_pipeline_returns_hybrid_rrf_results(self) -> None:
+    def test_pipeline_returns_hybrid_results(self) -> None:
         pipeline = RetrievalPipeline(self.chunks, use_tfidf_fallback=True)
         results = pipeline.retrieve("trợ cấp thôi việc", top_k=2)
 
@@ -58,7 +60,7 @@ class RetrievalPipelineTests(unittest.TestCase):
         self.assertEqual(len(results), 2)
         self.assertEqual(results[0].chunk.chunk_id, "leave")
         self.assertEqual([result.rank for result in results], [1, 2])
-        self.assertTrue(all(result.method == "hybrid_rrf" for result in results))
+        self.assertTrue(all(result.method == "hybrid" for result in results))
 
     def test_large_tfidf_fallback_uses_keyword_scan(self) -> None:
         chunks = [
@@ -74,15 +76,40 @@ class RetrievalPipelineTests(unittest.TestCase):
         self.assertEqual(pipeline.vector_backend, "keyword_scan")
         self.assertEqual(len(results), 1)
         self.assertEqual(results[0].chunk.chunk_id, "match")
-        self.assertEqual(results[0].method, "hybrid_rrf")
+        self.assertEqual(results[0].method, "hybrid")
 
     def test_prompt_context_contains_citation(self) -> None:
-        result = SearchResult(self.chunks[0], 0.5, "hybrid_rrf", 1)
+        result = SearchResult(self.chunks[0], 0.5, "hybrid", 1)
         context, citations = build_context([result])
 
         self.assertIn("[S1]", context)
         self.assertEqual(citations[0]["label"], "S1")
         self.assertEqual(citations[0]["chunk_id"], "leave")
+
+
+class EvaluationWorkflowTests(unittest.TestCase):
+    def test_fallback_testset_has_portfolio_sized_schema(self) -> None:
+        rows = fallback_testset()
+
+        self.assertGreaterEqual(len(rows), 30)
+        for row in rows:
+            self.assertIn("id", row)
+            self.assertIn("question", row)
+            self.assertIn("reference", row)
+            self.assertIn("expected_terms", row)
+            self.assertIn("topic", row)
+
+    def test_selection_score_uses_ragas_metrics_when_available(self) -> None:
+        row = {
+            "mrr": 0.8,
+            "ndcg@5": 0.7,
+            "term_context_precision": 0.1,
+            "term_context_recall": 0.2,
+            "ragas_context_precision": 0.9,
+            "ragas_context_recall": 1.0,
+        }
+
+        self.assertAlmostEqual(selection_score(row), 0.84)
 
 
 if __name__ == "__main__":

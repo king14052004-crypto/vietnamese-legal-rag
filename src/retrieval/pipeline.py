@@ -45,7 +45,7 @@ class RetrievalPipeline:
         candidate_k = min(len(self.chunks), max(30, top_k * 5))
         sparse_results = self._retrieve_bm25(query, candidate_k)
         vector_results = self._retrieve_vector(query, candidate_k)
-        return self._reciprocal_rank_fusion([sparse_results, vector_results], top_k)
+        return self._weighted_hybrid(sparse_results, vector_results, top_k)
 
     @staticmethod
     def _chunk_text(chunk: LegalChunk) -> str:
@@ -161,17 +161,38 @@ class RetrievalPipeline:
         ]
 
     @staticmethod
-    def _reciprocal_rank_fusion(result_lists: list[list[SearchResult]], top_k: int) -> list[SearchResult]:
+    def _minmax(results: list[SearchResult]) -> dict[str, float]:
+        if not results:
+            return {}
+        scores = [result.score for result in results]
+        low, high = min(scores), max(scores)
+        if high == low:
+            return {result.chunk.chunk_id: 1.0 for result in results}
+        return {result.chunk.chunk_id: (result.score - low) / (high - low) for result in results}
+
+    def _weighted_hybrid(
+        self,
+        sparse_results: list[SearchResult],
+        vector_results: list[SearchResult],
+        top_k: int,
+    ) -> list[SearchResult]:
+        if not vector_results:
+            return [
+                SearchResult(result.chunk, result.score, "hybrid", rank)
+                for rank, result in enumerate(sparse_results[:top_k], start=1)
+            ]
+
+        sparse_scores = self._minmax(sparse_results)
+        vector_scores = self._minmax(vector_results)
+        chunks = {result.chunk.chunk_id: result.chunk for result in sparse_results + vector_results}
         scores: dict[str, float] = defaultdict(float)
-        chunks: dict[str, LegalChunk] = {}
-        for results in result_lists:
-            for rank, result in enumerate(results, start=1):
-                chunk_id = result.chunk.chunk_id
-                chunks[chunk_id] = result.chunk
-                scores[chunk_id] += 1.0 / (60 + rank)
+        for chunk_id, score in sparse_scores.items():
+            scores[chunk_id] += 0.55 * score
+        for chunk_id, score in vector_scores.items():
+            scores[chunk_id] += 0.45 * score
 
         ordered = sorted(scores.items(), key=lambda item: item[1], reverse=True)[:top_k]
         return [
-            SearchResult(chunks[chunk_id], float(score), "hybrid_rrf", rank)
+            SearchResult(chunks[chunk_id], float(score), "hybrid", rank)
             for rank, (chunk_id, score) in enumerate(ordered, start=1)
         ]

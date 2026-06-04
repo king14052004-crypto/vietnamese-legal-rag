@@ -1,6 +1,12 @@
 .venv/
+rag_env/
 .tmp/
 .hf_cache/
+.matplotlib-cache/
+.ipython/
+.jupyter/
+.jupyter-data/
+.jupyter-runtime/
 __pycache__/
 *.py[cod]
 .pytest_cache/

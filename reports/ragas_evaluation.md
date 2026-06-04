@@ -1,23 +1,29 @@
-# Manual Golden-set RAGAS-style Smoke Evaluation
+# RAGAS Answer Evaluation
 
-Evaluator model: `gemini-3.1-flash-lite` via AI Studio `google-genai`.
-Question set: 8 manually curated Vietnamese labor-law questions.
-Scope: smoke/regression check only; these scores are not a statistically robust benchmark.
-Next benchmark step: generate 30-50 synthetic questions with `ragas.testset.TestsetGenerator`, manually review them, freeze the accepted set, then re-run answer evaluation.
+- Backend: `ragas_evaluate`
+- Cached artifact used: `True`
+- Cache reason: `cached_answers`
+- Answers: `30`
+- Retrieval method: `hybrid`
+- Model: `gemini-3.1-flash-lite`
 
 | Metric | Score |
 |---|---:|
-| Faithfulness | 0.925 |
-| Answer relevancy | 0.950 |
-| Context precision | 0.925 |
+| context_precision | 0.528 |
+| context_recall | 0.773 |
+| faithfulness | 0.876 |
+| answer_relevancy | 0.760 |
+| answer_correctness | 0.640 |
 
-## Per-sample notes
+## Figures
 
-- **Người lao động đơn phương chấm dứt hợp đồng lao động cần báo trước bao lâu?** - F=1.00, R=1.00, CP=1.00. Câu trả lời trích xuất chính xác thời hạn báo trước từ Context [1] cho các loại hợp đồng và từ Context [6] cho thời gian thử việc. Các thông tin được trình bày rõ ràng và tuân thủ đúng nội dung có trong văn bản được cung cấp.
-- **Trường hợp nào người lao động được nhận trợ cấp thôi việc?** - F=1.00, R=1.00, CP=1.00. Câu trả lời đã bao quát được các trường hợp người lao động và cán bộ, công chức được nhận trợ cấp thôi việc dựa trên các ngữ cảnh được cung cấp (S1, S2, S5, S6). Các thông tin được trích dẫn chính xác và logic, đồng thời giải thích rõ ràng các ngoại lệ về cộng dồn thời gian công tác và trách nhiệm chi trả.
-- **Doanh nghiệp có trách nhiệm gì về an toàn vệ sinh lao động?** - F=0.80, R=1.00, CP=0.90. Câu trả lời tổng hợp tốt các trách nhiệm của doanh nghiệp từ các tài liệu cung cấp (S3, S4, S5). Tuy nhiên, có một điểm nhỏ: câu trả lời đề cập đến việc 'thành lập đội phòng chống tai nạn lao động và phòng chống cháy nổ' dựa trên [S4], nhưng nội dung [S4] nêu rõ đây là trách nhiệm phối hợp giữa doanh nghiệp và công đoàn. Ngoài ra, việc gán nhãn nguồn [S3], [S4], [S5] rất chính xác và đầy đủ.
-- **Quy định về tiền lương và lương tối thiểu của người lao động là gì?** - F=1.00, R=1.00, CP=1.00. Câu trả lời trích xuất thông tin chính xác từ các tài liệu được cung cấp, trình bày mạch lạc và bổ sung lưu ý quan trọng về tính thời điểm của văn bản. Các thông tin về mức lương, đối tượng, quy đổi và điều chỉnh đều khớp hoàn toàn với ngữ cảnh.
-- **Người lao động nước ngoài cần điều kiện gì để làm việc tại Việt Nam?** - F=1.00, R=1.00, CP=1.00. Câu trả lời trích xuất chính xác các thông tin từ ngữ cảnh được cung cấp. Các yêu cầu về chuyên môn, thủ tục pháp lý (giấy phép lao động), hồ sơ (lý lịch tư pháp, bằng cấp, hợp đồng) và trách nhiệm của đơn vị sử dụng lao động đều có căn cứ trong các đoạn [1], [3] và [4]. Nội dung trả lời ngắn gọn, đúng trọng tâm và không chứa thông tin ảo.
-- **Kỷ luật sa thải người lao động được áp dụng trong trường hợp nào?** - F=0.60, R=0.80, CP=0.50. Câu trả lời có độ trung thực chưa cao do sử dụng các ký hiệu [S1], [S5] không tồn tại trong danh mục Contexts được cung cấp (chỉ có [1] đến [6]). Mặc dù câu trả lời trích xuất thông tin đúng từ Context [1] và [5], việc tự ý thêm các ký hiệu nguồn không có thực gây sai lệch về nguồn dẫn. Ngoài ra, phần trả lời phân biệt giữa 'kỷ luật sa thải' và 'chấm dứt hợp đồng lao động' khá tốt, nhưng việc gộp chung các trường hợp chấm dứt hợp đồng lao động (như thiên tai, công nghệ mới) vào nội dung kỷ luật sa thải có thể gây hiểu nhầm về mặt pháp lý dựa trên văn bản.
-- **Bảo hiểm thất nghiệp hỗ trợ người lao động như thế nào?** - F=1.00, R=0.80, CP=1.00. Câu trả lời trung thành với nội dung được cung cấp trong context (chỉ trích dẫn thông tin về việc xí nghiệp nộp tiền vào quỹ bảo hiểm thất nghiệp từ S1). Tuy nhiên, mức độ liên quan chưa cao vì câu hỏi hỏi về 'cách thức hỗ trợ người lao động' trong khi context chỉ đề cập đến nghĩa vụ nộp tiền của doanh nghiệp mà không mô tả quy trình người lao động nhận hỗ trợ, dẫn đến câu trả lời mang tính chất thông báo thiếu thông tin thay vì giải đáp trực tiếp.
-- **Tranh chấp lao động tập thể được giải quyết như thế nào?** - F=1.00, R=1.00, CP=1.00. Câu trả lời đã trích xuất chính xác quy trình giải quyết tranh chấp lao động tập thể dựa trên các ngữ cảnh được cung cấp (S1, S3). Các bước từ thương lượng trực tiếp, hòa giải/trọng tài đến quyền khởi kiện ra Tòa án được trình bày đầy đủ, logic và đúng với nội dung tài liệu.
+- `reports/figures/ragas_answer_metrics.png`
+- `reports/figures/ragas_per_question_heatmap.png` when RAGAS details are available
+
+## Weakest Cases
+
+- Văn bản này hướng dẫn thực hiện các quy định về lao động dựa trên nghị định nào của Chính phủ? - mean=0.062
+- Cho em hoi la cai Sở Lao động liên khu no co nhiem vu gi trong viec giai quyet mau thuan giua chu voi cong nhan khong a? - mean=0.246
+- Theo quy định tại CHƯƠNG VI thì khi xí nghiệp liên doanh giải thể, hội đồng quản trị cần phải thực hiện những nghĩa vụ gì đối với người lao động và các bên liên quan? - mean=0.306
+- Theo chỉ thị của UBNND TỈNH LÂM ĐỒNG, tình hình thực trạng quản lý hoạt động dạy nghề tại các tổ chức và doanh nghiệp trên địa bàn tỉnh hiện nay đang gặp phải những vấn đề gì? - mean=0.387
+- CHƯƠNG VI nói về cái gì vậy ạ? - mean=0.406
