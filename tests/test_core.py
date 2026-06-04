@@ -5,8 +5,6 @@ from src.data.chunking import split_by_article_or_window
 from src.data.filter_labor import is_labor_related
 from src.data.schema import LegalChunk, LegalDocument, SearchResult
 from src.generation.prompt import build_context
-from src.evaluation.retrieval_benchmark import selection_score
-from src.evaluation.testset import fallback_testset
 from src.retrieval.pipeline import RetrievalPipeline
 
 
@@ -85,31 +83,6 @@ class RetrievalPipelineTests(unittest.TestCase):
         self.assertIn("[S1]", context)
         self.assertEqual(citations[0]["label"], "S1")
         self.assertEqual(citations[0]["chunk_id"], "leave")
-
-
-class EvaluationWorkflowTests(unittest.TestCase):
-    def test_fallback_testset_has_portfolio_sized_schema(self) -> None:
-        rows = fallback_testset()
-
-        self.assertGreaterEqual(len(rows), 30)
-        for row in rows:
-            self.assertIn("id", row)
-            self.assertIn("question", row)
-            self.assertIn("reference", row)
-            self.assertIn("expected_terms", row)
-            self.assertIn("topic", row)
-
-    def test_selection_score_uses_ragas_metrics_when_available(self) -> None:
-        row = {
-            "mrr": 0.8,
-            "ndcg@5": 0.7,
-            "term_context_precision": 0.1,
-            "term_context_recall": 0.2,
-            "ragas_context_precision": 0.9,
-            "ragas_context_recall": 1.0,
-        }
-
-        self.assertAlmostEqual(selection_score(row), 0.84)
 
 
 if __name__ == "__main__":

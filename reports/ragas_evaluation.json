@@ -3,7 +3,7 @@
   "model": "gemini-3.1-flash-lite",
   "cached": true,
   "answers_cached": true,
-  "metrics_cached": false,
+  "metrics_cached": true,
   "cache_reason": "cached_answers",
   "answer_count": 30,
   "retrieval_method": "hybrid",

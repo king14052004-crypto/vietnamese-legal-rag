@@ -16,8 +16,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9764533199796763,
-      "term_context_precision": 0.588803352222604,
-      "term_context_recall": 0.884927674178576,
+      "lexical_context_precision": 0.588803352222604,
+      "lexical_context_recall": 0.884927674178576,
       "citation_coverage": 1.0,
       "ragas_context_precision": 0.0083333333325,
       "ragas_context_recall": 0.03333333333333333,
@@ -27,21 +27,21 @@
       "method": "vector",
       "recall@5": 1.0,
       "mrr": 1.0,
-      "ndcg@5": 0.9318836299869304,
-      "term_context_precision": 0.4731018224486906,
-      "term_context_recall": 0.7877079500948486,
+      "ndcg@5": 0.9315202907409484,
+      "lexical_context_precision": 0.4731018224486906,
+      "lexical_context_recall": 0.7877079500948486,
       "citation_coverage": 1.0,
       "ragas_context_precision": 0.049999999995,
       "ragas_context_recall": 0.06666666666666667,
-      "selection_score": 0.5588042408288159
+      "selection_score": 0.5587134060173203
     },
     {
       "method": "hybrid",
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9587285118196728,
-      "term_context_precision": 0.5695315300732204,
-      "term_context_recall": 0.8875601585978018,
+      "lexical_context_precision": 0.5695315300732204,
+      "lexical_context_recall": 0.8875601585978018,
       "citation_coverage": 1.0,
       "ragas_context_precision": 0.030555555552499995,
       "ragas_context_recall": 0.1,
@@ -52,8 +52,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.940613885942499,
-      "term_context_precision": 0.5525699584442841,
-      "term_context_recall": 0.8738423341442129,
+      "lexical_context_precision": 0.5525699584442841,
+      "lexical_context_recall": 0.8738423341442129,
       "citation_coverage": 1.0,
       "ragas_context_precision": 0.03333333333,
       "ragas_context_recall": 0.1,
@@ -63,13 +63,13 @@
       "method": "hybrid_rrf_mmr",
       "recall@5": 1.0,
       "mrr": 1.0,
-      "ndcg@5": 0.9469288636289422,
-      "term_context_precision": 0.5160971918186302,
-      "term_context_recall": 0.8599152835860598,
+      "ndcg@5": 0.946811516162703,
+      "lexical_context_precision": 0.5145017502231887,
+      "lexical_context_recall": 0.8609734846442608,
       "citation_coverage": 1.0,
       "ragas_context_precision": 0.027777777774999998,
       "ragas_context_recall": 0.06666666666666667,
-      "selection_score": 0.5570099936843188
+      "selection_score": 0.556980656817759
     }
   ],
   "details": [
@@ -82,8 +82,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9730535840489903,
-      "term_context_precision": 0.6925925925925926,
-      "term_context_recall": 1.0,
+      "lexical_context_precision": 0.6925925925925926,
+      "lexical_context_recall": 1.0,
       "citation_coverage": 1.0
     },
     {
@@ -95,8 +95,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9928811628924937,
-      "term_context_precision": 0.560655737704918,
-      "term_context_recall": 0.8852459016393442,
+      "lexical_context_precision": 0.560655737704918,
+      "lexical_context_recall": 0.8852459016393442,
       "citation_coverage": 1.0
     },
     {
@@ -108,8 +108,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9726277486031669,
-      "term_context_precision": 0.64,
-      "term_context_recall": 0.9692307692307692,
+      "lexical_context_precision": 0.64,
+      "lexical_context_recall": 0.9692307692307692,
       "citation_coverage": 1.0
     },
     {
@@ -121,8 +121,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9414729650137958,
-      "term_context_precision": 0.425,
-      "term_context_recall": 0.75,
+      "lexical_context_precision": 0.425,
+      "lexical_context_recall": 0.75,
       "citation_coverage": 1.0
     },
     {
@@ -134,8 +134,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9969459237366592,
-      "term_context_precision": 0.4,
-      "term_context_recall": 0.6111111111111112,
+      "lexical_context_precision": 0.4,
+      "lexical_context_recall": 0.6111111111111112,
       "citation_coverage": 1.0
     },
     {
@@ -147,8 +147,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9938721646706088,
-      "term_context_precision": 0.5347826086956522,
-      "term_context_recall": 0.8478260869565217,
+      "lexical_context_precision": 0.5347826086956522,
+      "lexical_context_recall": 0.8478260869565217,
       "citation_coverage": 1.0
     },
     {
@@ -160,8 +160,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9982242248281782,
-      "term_context_precision": 0.6270270270270271,
-      "term_context_recall": 0.972972972972973,
+      "lexical_context_precision": 0.6270270270270271,
+      "lexical_context_recall": 0.972972972972973,
       "citation_coverage": 1.0
     },
     {
@@ -173,8 +173,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 1.0,
-      "term_context_precision": 0.5409090909090909,
-      "term_context_recall": 0.8863636363636364,
+      "lexical_context_precision": 0.5409090909090909,
+      "lexical_context_recall": 0.8863636363636364,
       "citation_coverage": 1.0
     },
     {
@@ -186,8 +186,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9530470084941154,
-      "term_context_precision": 0.5607142857142857,
-      "term_context_recall": 0.9107142857142857,
+      "lexical_context_precision": 0.5607142857142857,
+      "lexical_context_recall": 0.9107142857142857,
       "citation_coverage": 1.0
     },
     {
@@ -199,8 +199,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9919368360220401,
-      "term_context_precision": 0.4708333333333333,
-      "term_context_recall": 0.8333333333333334,
+      "lexical_context_precision": 0.4708333333333333,
+      "lexical_context_recall": 0.8333333333333334,
       "citation_coverage": 1.0
     },
     {
@@ -212,8 +212,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9734922708119801,
-      "term_context_precision": 0.544,
-      "term_context_recall": 0.9,
+      "lexical_context_precision": 0.544,
+      "lexical_context_recall": 0.9,
       "citation_coverage": 1.0
     },
     {
@@ -225,8 +225,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.948425210574059,
-      "term_context_precision": 0.6045454545454546,
-      "term_context_recall": 0.9090909090909091,
+      "lexical_context_precision": 0.6045454545454546,
+      "lexical_context_recall": 0.9090909090909091,
       "citation_coverage": 1.0
     },
     {
@@ -238,8 +238,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 1.0,
-      "term_context_precision": 0.9473684210526315,
-      "term_context_recall": 0.9473684210526315,
+      "lexical_context_precision": 0.9473684210526315,
+      "lexical_context_recall": 0.9473684210526315,
       "citation_coverage": 1.0
     },
     {
@@ -251,8 +251,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9880403198638357,
-      "term_context_precision": 0.8,
-      "term_context_recall": 0.8636363636363636,
+      "lexical_context_precision": 0.8,
+      "lexical_context_recall": 0.8636363636363636,
       "citation_coverage": 1.0
     },
     {
@@ -264,8 +264,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9990445223539334,
-      "term_context_precision": 0.75,
-      "term_context_recall": 0.925,
+      "lexical_context_precision": 0.75,
+      "lexical_context_recall": 0.925,
       "citation_coverage": 1.0
     },
     {
@@ -277,8 +277,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9489318540632143,
-      "term_context_precision": 0.6,
-      "term_context_recall": 0.8333333333333334,
+      "lexical_context_precision": 0.6,
+      "lexical_context_recall": 0.8333333333333334,
       "citation_coverage": 1.0
     },
     {
@@ -290,8 +290,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.948756420767417,
-      "term_context_precision": 0.7105263157894737,
-      "term_context_recall": 1.0,
+      "lexical_context_precision": 0.7105263157894737,
+      "lexical_context_recall": 1.0,
       "citation_coverage": 1.0
     },
     {
@@ -303,8 +303,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9905949477550864,
-      "term_context_precision": 0.6974358974358974,
-      "term_context_recall": 0.9743589743589743,
+      "lexical_context_precision": 0.6974358974358974,
+      "lexical_context_recall": 0.9743589743589743,
       "citation_coverage": 1.0
     },
     {
@@ -316,8 +316,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9937911338935407,
-      "term_context_precision": 0.7419354838709677,
-      "term_context_recall": 1.0,
+      "lexical_context_precision": 0.7419354838709677,
+      "lexical_context_recall": 1.0,
       "citation_coverage": 1.0
     },
     {
@@ -329,8 +329,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9663444856469838,
-      "term_context_precision": 0.70625,
-      "term_context_recall": 0.9375,
+      "lexical_context_precision": 0.70625,
+      "lexical_context_recall": 0.9375,
       "citation_coverage": 1.0
     },
     {
@@ -342,8 +342,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9806850977896728,
-      "term_context_precision": 0.6090909090909091,
-      "term_context_recall": 1.0,
+      "lexical_context_precision": 0.6090909090909091,
+      "lexical_context_recall": 1.0,
       "citation_coverage": 1.0
     },
     {
@@ -355,8 +355,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9897623302971775,
-      "term_context_precision": 0.58125,
-      "term_context_recall": 0.90625,
+      "lexical_context_precision": 0.58125,
+      "lexical_context_recall": 0.90625,
       "citation_coverage": 1.0
     },
     {
@@ -368,8 +368,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9716061558726612,
-      "term_context_precision": 0.30769230769230765,
-      "term_context_recall": 0.7948717948717948,
+      "lexical_context_precision": 0.30769230769230765,
+      "lexical_context_recall": 0.7948717948717948,
       "citation_coverage": 1.0
     },
     {
@@ -381,8 +381,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9855536218159268,
-      "term_context_precision": 0.6857142857142857,
-      "term_context_recall": 1.0,
+      "lexical_context_precision": 0.6857142857142857,
+      "lexical_context_recall": 1.0,
       "citation_coverage": 1.0
     },
     {
@@ -394,8 +394,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9385696218187867,
-      "term_context_precision": 0.36190476190476184,
-      "term_context_recall": 0.7142857142857143,
+      "lexical_context_precision": 0.36190476190476184,
+      "lexical_context_recall": 0.7142857142857143,
       "citation_coverage": 1.0
     },
     {
@@ -407,8 +407,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9965219936359428,
-      "term_context_precision": 0.632,
-      "term_context_recall": 0.92,
+      "lexical_context_precision": 0.632,
+      "lexical_context_recall": 0.92,
       "citation_coverage": 1.0
     },
     {
@@ -420,8 +420,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9901134062806548,
-      "term_context_precision": 0.7161290322580645,
-      "term_context_recall": 1.0,
+      "lexical_context_precision": 0.7161290322580645,
+      "lexical_context_recall": 1.0,
       "citation_coverage": 1.0
     },
     {
@@ -433,8 +433,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9414917362616717,
-      "term_context_precision": 0.3875,
-      "term_context_recall": 0.8333333333333334,
+      "lexical_context_precision": 0.3875,
+      "lexical_context_recall": 0.8333333333333334,
       "citation_coverage": 1.0
     },
     {
@@ -446,8 +446,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9963301486512836,
-      "term_context_precision": 0.5523809523809524,
-      "term_context_recall": 0.9047619047619048,
+      "lexical_context_precision": 0.5523809523809524,
+      "lexical_context_recall": 0.9047619047619048,
       "citation_coverage": 1.0
     },
     {
@@ -459,8 +459,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9314827029264132,
-      "term_context_precision": 0.27586206896551724,
-      "term_context_recall": 0.5172413793103449,
+      "lexical_context_precision": 0.27586206896551724,
+      "lexical_context_recall": 0.5172413793103449,
       "citation_coverage": 1.0
     },
     {
@@ -472,8 +472,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9938298323415392,
-      "term_context_precision": 0.6740740740740742,
-      "term_context_recall": 1.0,
+      "lexical_context_precision": 0.6740740740740742,
+      "lexical_context_recall": 1.0,
       "citation_coverage": 1.0
     },
     {
@@ -485,8 +485,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.8045770331348725,
-      "term_context_precision": 0.4065573770491803,
-      "term_context_recall": 0.819672131147541,
+      "lexical_context_precision": 0.4065573770491803,
+      "lexical_context_recall": 0.819672131147541,
       "citation_coverage": 1.0
     },
     {
@@ -498,8 +498,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9859104564648987,
-      "term_context_precision": 0.64,
-      "term_context_recall": 0.9846153846153847,
+      "lexical_context_precision": 0.64,
+      "lexical_context_recall": 0.9846153846153847,
       "citation_coverage": 1.0
     },
     {
@@ -511,8 +511,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.8110802540446294,
-      "term_context_precision": 0.4,
-      "term_context_recall": 0.75,
+      "lexical_context_precision": 0.4,
+      "lexical_context_recall": 0.75,
       "citation_coverage": 1.0
     },
     {
@@ -524,8 +524,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9383309165343651,
-      "term_context_precision": 0.34074074074074073,
-      "term_context_recall": 0.5555555555555556,
+      "lexical_context_precision": 0.34074074074074073,
+      "lexical_context_recall": 0.5555555555555556,
       "citation_coverage": 1.0
     },
     {
@@ -537,8 +537,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9016837742695674,
-      "term_context_precision": 0.49565217391304345,
-      "term_context_recall": 0.8478260869565217,
+      "lexical_context_precision": 0.49565217391304345,
+      "lexical_context_recall": 0.8478260869565217,
       "citation_coverage": 1.0
     },
     {
@@ -550,8 +550,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9803249651323779,
-      "term_context_precision": 0.372972972972973,
-      "term_context_recall": 0.7297297297297297,
+      "lexical_context_precision": 0.372972972972973,
+      "lexical_context_recall": 0.7297297297297297,
       "citation_coverage": 1.0
     },
     {
@@ -563,8 +563,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 1.0,
-      "term_context_precision": 0.5363636363636364,
-      "term_context_recall": 0.9090909090909091,
+      "lexical_context_precision": 0.5363636363636364,
+      "lexical_context_recall": 0.9090909090909091,
       "citation_coverage": 1.0
     },
     {
@@ -576,8 +576,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9020101657760923,
-      "term_context_precision": 0.43571428571428567,
-      "term_context_recall": 0.7857142857142857,
+      "lexical_context_precision": 0.43571428571428567,
+      "lexical_context_recall": 0.7857142857142857,
       "citation_coverage": 1.0
     },
     {
@@ -589,8 +589,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.8650969736711878,
-      "term_context_precision": 0.3375,
-      "term_context_recall": 0.7291666666666666,
+      "lexical_context_precision": 0.3375,
+      "lexical_context_recall": 0.7291666666666666,
       "citation_coverage": 1.0
     },
     {
@@ -602,8 +602,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9985493677026529,
-      "term_context_precision": 0.5720000000000001,
-      "term_context_recall": 0.9,
+      "lexical_context_precision": 0.5720000000000001,
+      "lexical_context_recall": 0.9,
       "citation_coverage": 1.0
     },
     {
@@ -615,8 +615,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9100699303535584,
-      "term_context_precision": 0.5181818181818182,
-      "term_context_recall": 0.8636363636363636,
+      "lexical_context_precision": 0.5181818181818182,
+      "lexical_context_recall": 0.8636363636363636,
       "citation_coverage": 1.0
     },
     {
@@ -628,8 +628,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9006954898936264,
-      "term_context_precision": 0.42105263157894735,
-      "term_context_recall": 0.5789473684210527,
+      "lexical_context_precision": 0.42105263157894735,
+      "lexical_context_recall": 0.5789473684210527,
       "citation_coverage": 1.0
     },
     {
@@ -641,8 +641,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9653384575533632,
-      "term_context_precision": 0.44545454545454544,
-      "term_context_recall": 0.6363636363636364,
+      "lexical_context_precision": 0.44545454545454544,
+      "lexical_context_recall": 0.6363636363636364,
       "citation_coverage": 1.0
     },
     {
@@ -654,8 +654,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9776256546847311,
-      "term_context_precision": 0.48,
-      "term_context_recall": 0.725,
+      "lexical_context_precision": 0.48,
+      "lexical_context_recall": 0.725,
       "citation_coverage": 1.0
     },
     {
@@ -667,8 +667,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9477967521092181,
-      "term_context_precision": 0.4533333333333333,
-      "term_context_recall": 0.6,
+      "lexical_context_precision": 0.4533333333333333,
+      "lexical_context_recall": 0.6,
       "citation_coverage": 1.0
     },
     {
@@ -680,8 +680,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9295005108643167,
-      "term_context_precision": 0.5631578947368421,
-      "term_context_recall": 0.9210526315789473,
+      "lexical_context_precision": 0.5631578947368421,
+      "lexical_context_recall": 0.9210526315789473,
       "citation_coverage": 1.0
     },
     {
@@ -693,8 +693,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.990251511476871,
-      "term_context_precision": 0.5948717948717949,
-      "term_context_recall": 0.9230769230769231,
+      "lexical_context_precision": 0.5948717948717949,
+      "lexical_context_recall": 0.9230769230769231,
       "citation_coverage": 1.0
     },
     {
@@ -706,8 +706,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9697499772066996,
-      "term_context_precision": 0.632258064516129,
-      "term_context_recall": 1.0,
+      "lexical_context_precision": 0.632258064516129,
+      "lexical_context_recall": 1.0,
       "citation_coverage": 1.0
     },
     {
@@ -719,8 +719,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9630157896389714,
-      "term_context_precision": 0.4875,
-      "term_context_recall": 0.875,
+      "lexical_context_precision": 0.4875,
+      "lexical_context_recall": 0.875,
       "citation_coverage": 1.0
     },
     {
@@ -732,8 +732,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9051616215082404,
-      "term_context_precision": 0.44545454545454544,
-      "term_context_recall": 0.9545454545454546,
+      "lexical_context_precision": 0.44545454545454544,
+      "lexical_context_recall": 0.9545454545454546,
       "citation_coverage": 1.0
     },
     {
@@ -745,8 +745,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9490036676915505,
-      "term_context_precision": 0.43125,
-      "term_context_recall": 0.75,
+      "lexical_context_precision": 0.43125,
+      "lexical_context_recall": 0.75,
       "citation_coverage": 1.0
     },
     {
@@ -758,8 +758,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.8123554084384155,
-      "term_context_precision": 0.2,
-      "term_context_recall": 0.46153846153846156,
+      "lexical_context_precision": 0.2,
+      "lexical_context_recall": 0.46153846153846156,
       "citation_coverage": 1.0
     },
     {
@@ -771,8 +771,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.890152889824109,
-      "term_context_precision": 0.7142857142857142,
-      "term_context_recall": 1.0,
+      "lexical_context_precision": 0.7142857142857142,
+      "lexical_context_recall": 1.0,
       "citation_coverage": 1.0
     },
     {
@@ -783,9 +783,9 @@
       "top_title": "Về việc ban hành Kế hoạch sửa chữa sai lầm trong các cuộc phát động quần chúng ở các xí nghiệp, công trường, nông trường",
       "recall@5": 1.0,
       "mrr": 1.0,
-      "ndcg@5": 0.9931093055350245,
-      "term_context_precision": 0.2253968253968254,
-      "term_context_recall": 0.5079365079365079,
+      "ndcg@5": 0.9822091281555649,
+      "lexical_context_precision": 0.2253968253968254,
+      "lexical_context_recall": 0.5079365079365079,
       "citation_coverage": 1.0
     },
     {
@@ -797,8 +797,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.8910541673807961,
-      "term_context_precision": 0.548,
-      "term_context_recall": 0.88,
+      "lexical_context_precision": 0.548,
+      "lexical_context_recall": 0.88,
       "citation_coverage": 1.0
     },
     {
@@ -810,8 +810,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.8721074225783126,
-      "term_context_precision": 0.6774193548387097,
-      "term_context_recall": 0.9354838709677419,
+      "lexical_context_precision": 0.6774193548387097,
+      "lexical_context_recall": 0.9354838709677419,
       "citation_coverage": 1.0
     },
     {
@@ -823,8 +823,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9855183849742148,
-      "term_context_precision": 0.4125,
-      "term_context_recall": 0.7708333333333334,
+      "lexical_context_precision": 0.4125,
+      "lexical_context_recall": 0.7708333333333334,
       "citation_coverage": 1.0
     },
     {
@@ -836,8 +836,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.992115100115696,
-      "term_context_precision": 0.47619047619047616,
-      "term_context_recall": 0.8571428571428571,
+      "lexical_context_precision": 0.47619047619047616,
+      "lexical_context_recall": 0.8571428571428571,
       "citation_coverage": 1.0
     },
     {
@@ -849,8 +849,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9304931187080128,
-      "term_context_precision": 0.25517241379310346,
-      "term_context_recall": 0.3793103448275862,
+      "lexical_context_precision": 0.25517241379310346,
+      "lexical_context_recall": 0.3793103448275862,
       "citation_coverage": 1.0
     },
     {
@@ -862,8 +862,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9804182529862556,
-      "term_context_precision": 0.725925925925926,
-      "term_context_recall": 1.0,
+      "lexical_context_precision": 0.725925925925926,
+      "lexical_context_recall": 1.0,
       "citation_coverage": 1.0
     },
     {
@@ -875,8 +875,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9249916058540603,
-      "term_context_precision": 0.6327868852459015,
-      "term_context_recall": 0.9508196721311475,
+      "lexical_context_precision": 0.6327868852459015,
+      "lexical_context_recall": 0.9508196721311475,
       "citation_coverage": 1.0
     },
     {
@@ -888,8 +888,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9296136724968618,
-      "term_context_precision": 0.6584615384615384,
-      "term_context_recall": 0.9846153846153847,
+      "lexical_context_precision": 0.6584615384615384,
+      "lexical_context_recall": 0.9846153846153847,
       "citation_coverage": 1.0
     },
     {
@@ -901,8 +901,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9880375430465429,
-      "term_context_precision": 0.375,
-      "term_context_recall": 0.875,
+      "lexical_context_precision": 0.375,
+      "lexical_context_recall": 0.875,
       "citation_coverage": 1.0
     },
     {
@@ -914,8 +914,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9376080330069837,
-      "term_context_precision": 0.40370370370370373,
-      "term_context_recall": 0.6296296296296297,
+      "lexical_context_precision": 0.40370370370370373,
+      "lexical_context_recall": 0.6296296296296297,
       "citation_coverage": 1.0
     },
     {
@@ -927,8 +927,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 1.0,
-      "term_context_precision": 0.5478260869565218,
-      "term_context_recall": 0.8478260869565217,
+      "lexical_context_precision": 0.5478260869565218,
+      "lexical_context_recall": 0.8478260869565217,
       "citation_coverage": 1.0
     },
     {
@@ -940,8 +940,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9043782552654503,
-      "term_context_precision": 0.6162162162162163,
-      "term_context_recall": 0.918918918918919,
+      "lexical_context_precision": 0.6162162162162163,
+      "lexical_context_recall": 0.918918918918919,
       "citation_coverage": 1.0
     },
     {
@@ -953,8 +953,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 1.0,
-      "term_context_precision": 0.5409090909090909,
-      "term_context_recall": 0.8863636363636364,
+      "lexical_context_precision": 0.5409090909090909,
+      "lexical_context_recall": 0.8863636363636364,
       "citation_coverage": 1.0
     },
     {
@@ -966,8 +966,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9039394308571629,
-      "term_context_precision": 0.5571428571428572,
-      "term_context_recall": 0.9464285714285714,
+      "lexical_context_precision": 0.5571428571428572,
+      "lexical_context_recall": 0.9464285714285714,
       "citation_coverage": 1.0
     },
     {
@@ -979,8 +979,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9095212993506961,
-      "term_context_precision": 0.5083333333333333,
-      "term_context_recall": 0.8333333333333334,
+      "lexical_context_precision": 0.5083333333333333,
+      "lexical_context_recall": 0.8333333333333334,
       "citation_coverage": 1.0
     },
     {
@@ -992,8 +992,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 1.0,
-      "term_context_precision": 0.5720000000000001,
-      "term_context_recall": 0.9,
+      "lexical_context_precision": 0.5720000000000001,
+      "lexical_context_recall": 0.9,
       "citation_coverage": 1.0
     },
     {
@@ -1005,8 +1005,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9914154982927095,
-      "term_context_precision": 0.55,
-      "term_context_recall": 0.8409090909090909,
+      "lexical_context_precision": 0.55,
+      "lexical_context_recall": 0.8409090909090909,
       "citation_coverage": 1.0
     },
     {
@@ -1018,8 +1018,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9392635902408533,
-      "term_context_precision": 0.6631578947368421,
-      "term_context_recall": 0.9473684210526315,
+      "lexical_context_precision": 0.6631578947368421,
+      "lexical_context_recall": 0.9473684210526315,
       "citation_coverage": 1.0
     },
     {
@@ -1031,8 +1031,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.8927556195154362,
-      "term_context_precision": 0.5181818181818182,
-      "term_context_recall": 0.8636363636363636,
+      "lexical_context_precision": 0.5181818181818182,
+      "lexical_context_recall": 0.8636363636363636,
       "citation_coverage": 1.0
     },
     {
@@ -1044,8 +1044,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9750835349779647,
-      "term_context_precision": 0.705,
-      "term_context_recall": 0.925,
+      "lexical_context_precision": 0.705,
+      "lexical_context_recall": 0.925,
       "citation_coverage": 1.0
     },
     {
@@ -1057,8 +1057,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9217953502909824,
-      "term_context_precision": 0.54,
-      "term_context_recall": 0.7,
+      "lexical_context_precision": 0.54,
+      "lexical_context_recall": 0.7,
       "citation_coverage": 1.0
     },
     {
@@ -1070,8 +1070,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9899849029964346,
-      "term_context_precision": 0.6,
-      "term_context_recall": 0.9473684210526315,
+      "lexical_context_precision": 0.6,
+      "lexical_context_recall": 0.9473684210526315,
       "citation_coverage": 1.0
     },
     {
@@ -1083,8 +1083,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9828559658254117,
-      "term_context_precision": 0.6615384615384615,
-      "term_context_recall": 0.9743589743589743,
+      "lexical_context_precision": 0.6615384615384615,
+      "lexical_context_recall": 0.9743589743589743,
       "citation_coverage": 1.0
     },
     {
@@ -1096,8 +1096,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9846687413442233,
-      "term_context_precision": 0.6903225806451613,
-      "term_context_recall": 1.0,
+      "lexical_context_precision": 0.6903225806451613,
+      "lexical_context_recall": 1.0,
       "citation_coverage": 1.0
     },
     {
@@ -1109,8 +1109,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.939107173174202,
-      "term_context_precision": 0.70625,
-      "term_context_recall": 0.9375,
+      "lexical_context_precision": 0.70625,
+      "lexical_context_recall": 0.9375,
       "citation_coverage": 1.0
     },
     {
@@ -1122,8 +1122,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9810411313475204,
-      "term_context_precision": 0.6181818181818182,
-      "term_context_recall": 1.0,
+      "lexical_context_precision": 0.6181818181818182,
+      "lexical_context_recall": 1.0,
       "citation_coverage": 1.0
     },
     {
@@ -1135,8 +1135,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9935755509761144,
-      "term_context_precision": 0.50625,
-      "term_context_recall": 0.90625,
+      "lexical_context_precision": 0.50625,
+      "lexical_context_recall": 0.90625,
       "citation_coverage": 1.0
     },
     {
@@ -1148,8 +1148,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9558859625816398,
-      "term_context_precision": 0.3282051282051282,
-      "term_context_recall": 0.7948717948717948,
+      "lexical_context_precision": 0.3282051282051282,
+      "lexical_context_recall": 0.7948717948717948,
       "citation_coverage": 1.0
     },
     {
@@ -1161,8 +1161,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9793748997643522,
-      "term_context_precision": 0.7142857142857142,
-      "term_context_recall": 1.0,
+      "lexical_context_precision": 0.7142857142857142,
+      "lexical_context_recall": 1.0,
       "citation_coverage": 1.0
     },
     {
@@ -1174,8 +1174,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9421153578912171,
-      "term_context_precision": 0.3746031746031746,
-      "term_context_recall": 0.746031746031746,
+      "lexical_context_precision": 0.3746031746031746,
+      "lexical_context_recall": 0.746031746031746,
       "citation_coverage": 1.0
     },
     {
@@ -1187,8 +1187,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9906606685174052,
-      "term_context_precision": 0.644,
-      "term_context_recall": 0.92,
+      "lexical_context_precision": 0.644,
+      "lexical_context_recall": 0.92,
       "citation_coverage": 1.0
     },
     {
@@ -1200,8 +1200,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9654740963161162,
-      "term_context_precision": 0.7354838709677419,
-      "term_context_recall": 1.0,
+      "lexical_context_precision": 0.7354838709677419,
+      "lexical_context_recall": 1.0,
       "citation_coverage": 1.0
     },
     {
@@ -1213,8 +1213,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.947275442250893,
-      "term_context_precision": 0.5041666666666667,
-      "term_context_recall": 0.8333333333333334,
+      "lexical_context_precision": 0.5041666666666667,
+      "lexical_context_recall": 0.8333333333333334,
       "citation_coverage": 1.0
     },
     {
@@ -1226,8 +1226,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9945390946251839,
-      "term_context_precision": 0.619047619047619,
-      "term_context_recall": 1.0,
+      "lexical_context_precision": 0.619047619047619,
+      "lexical_context_recall": 1.0,
       "citation_coverage": 1.0
     },
     {
@@ -1239,8 +1239,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9164746807975099,
-      "term_context_precision": 0.2689655172413793,
-      "term_context_recall": 0.5172413793103449,
+      "lexical_context_precision": 0.2689655172413793,
+      "lexical_context_recall": 0.5172413793103449,
       "citation_coverage": 1.0
     },
     {
@@ -1252,8 +1252,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.996166390647908,
-      "term_context_precision": 0.725925925925926,
-      "term_context_recall": 1.0,
+      "lexical_context_precision": 0.725925925925926,
+      "lexical_context_recall": 1.0,
       "citation_coverage": 1.0
     },
     {
@@ -1265,8 +1265,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9285965792602304,
-      "term_context_precision": 0.6131147540983607,
-      "term_context_recall": 0.9344262295081968,
+      "lexical_context_precision": 0.6131147540983607,
+      "lexical_context_recall": 0.9344262295081968,
       "citation_coverage": 1.0
     },
     {
@@ -1278,8 +1278,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9232318574947178,
-      "term_context_precision": 0.6553846153846153,
-      "term_context_recall": 0.9846153846153847,
+      "lexical_context_precision": 0.6553846153846153,
+      "lexical_context_recall": 0.9846153846153847,
       "citation_coverage": 1.0
     },
     {
@@ -1291,8 +1291,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 1.0,
-      "term_context_precision": 0.375,
-      "term_context_recall": 0.875,
+      "lexical_context_precision": 0.375,
+      "lexical_context_recall": 0.875,
       "citation_coverage": 1.0
     },
     {
@@ -1304,8 +1304,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9913625061549975,
-      "term_context_precision": 0.37777777777777777,
-      "term_context_recall": 0.5555555555555556,
+      "lexical_context_precision": 0.37777777777777777,
+      "lexical_context_recall": 0.5555555555555556,
       "citation_coverage": 1.0
     },
     {
@@ -1317,8 +1317,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.983233247860481,
-      "term_context_precision": 0.5869565217391305,
-      "term_context_recall": 0.9565217391304348,
+      "lexical_context_precision": 0.5869565217391305,
+      "lexical_context_recall": 0.9565217391304348,
       "citation_coverage": 1.0
     },
     {
@@ -1330,8 +1330,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.973981222783527,
-      "term_context_precision": 0.518918918918919,
-      "term_context_recall": 0.8648648648648649,
+      "lexical_context_precision": 0.518918918918919,
+      "lexical_context_recall": 0.8648648648648649,
       "citation_coverage": 1.0
     },
     {
@@ -1343,8 +1343,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 1.0,
-      "term_context_precision": 0.5409090909090909,
-      "term_context_recall": 0.8863636363636364,
+      "lexical_context_precision": 0.5409090909090909,
+      "lexical_context_recall": 0.8863636363636364,
       "citation_coverage": 1.0
     },
     {
@@ -1356,8 +1356,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9671339535432038,
-      "term_context_precision": 0.49642857142857144,
-      "term_context_recall": 0.7857142857142857,
+      "lexical_context_precision": 0.49642857142857144,
+      "lexical_context_recall": 0.7857142857142857,
       "citation_coverage": 1.0
     },
     {
@@ -1369,8 +1369,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.8620244424494645,
-      "term_context_precision": 0.575,
-      "term_context_recall": 0.9375,
+      "lexical_context_precision": 0.575,
+      "lexical_context_recall": 0.9375,
       "citation_coverage": 1.0
     },
     {
@@ -1382,8 +1382,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 1.0,
-      "term_context_precision": 0.5720000000000001,
-      "term_context_recall": 0.9,
+      "lexical_context_precision": 0.5720000000000001,
+      "lexical_context_recall": 0.9,
       "citation_coverage": 1.0
     },
     {
@@ -1395,8 +1395,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9914154982927095,
-      "term_context_precision": 0.55,
-      "term_context_recall": 0.8409090909090909,
+      "lexical_context_precision": 0.55,
+      "lexical_context_recall": 0.8409090909090909,
       "citation_coverage": 1.0
     },
     {
@@ -1408,8 +1408,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.8351405551780963,
-      "term_context_precision": 0.5789473684210525,
-      "term_context_recall": 0.9473684210526315,
+      "lexical_context_precision": 0.5789473684210525,
+      "lexical_context_recall": 0.9473684210526315,
       "citation_coverage": 1.0
     },
     {
@@ -1421,8 +1421,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.8786385320308463,
-      "term_context_precision": 0.509090909090909,
-      "term_context_recall": 0.8636363636363636,
+      "lexical_context_precision": 0.509090909090909,
+      "lexical_context_recall": 0.8636363636363636,
       "citation_coverage": 1.0
     },
     {
@@ -1434,8 +1434,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.904984126708329,
-      "term_context_precision": 0.635,
-      "term_context_recall": 0.925,
+      "lexical_context_precision": 0.635,
+      "lexical_context_recall": 0.925,
       "citation_coverage": 1.0
     },
     {
@@ -1447,8 +1447,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.954313382845455,
-      "term_context_precision": 0.54,
-      "term_context_recall": 0.7333333333333333,
+      "lexical_context_precision": 0.54,
+      "lexical_context_recall": 0.7333333333333333,
       "citation_coverage": 1.0
     },
     {
@@ -1460,8 +1460,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9833721158069179,
-      "term_context_precision": 0.5526315789473684,
-      "term_context_recall": 0.9210526315789473,
+      "lexical_context_precision": 0.5526315789473684,
+      "lexical_context_recall": 0.9210526315789473,
       "citation_coverage": 1.0
     },
     {
@@ -1473,8 +1473,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9920935153593978,
-      "term_context_precision": 0.6,
-      "term_context_recall": 0.9230769230769231,
+      "lexical_context_precision": 0.6,
+      "lexical_context_recall": 0.9230769230769231,
       "citation_coverage": 1.0
     },
     {
@@ -1486,8 +1486,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9926797802539704,
-      "term_context_precision": 0.767741935483871,
-      "term_context_recall": 1.0,
+      "lexical_context_precision": 0.767741935483871,
+      "lexical_context_recall": 1.0,
       "citation_coverage": 1.0
     },
     {
@@ -1499,8 +1499,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9358777580299116,
-      "term_context_precision": 0.6875,
-      "term_context_recall": 0.90625,
+      "lexical_context_precision": 0.6875,
+      "lexical_context_recall": 0.90625,
       "citation_coverage": 1.0
     },
     {
@@ -1512,8 +1512,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.8878443865410927,
-      "term_context_precision": 0.7,
-      "term_context_recall": 1.0,
+      "lexical_context_precision": 0.7,
+      "lexical_context_recall": 1.0,
       "citation_coverage": 1.0
     },
     {
@@ -1525,8 +1525,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9219313296037999,
-      "term_context_precision": 0.525,
-      "term_context_recall": 0.90625,
+      "lexical_context_precision": 0.525,
+      "lexical_context_recall": 0.90625,
       "citation_coverage": 1.0
     },
     {
@@ -1538,8 +1538,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.8123343345842056,
-      "term_context_precision": 0.28205128205128205,
-      "term_context_recall": 0.7948717948717948,
+      "lexical_context_precision": 0.28205128205128205,
+      "lexical_context_recall": 0.7948717948717948,
       "citation_coverage": 1.0
     },
     {
@@ -1551,8 +1551,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.914599479162702,
-      "term_context_precision": 0.6952380952380952,
-      "term_context_recall": 1.0,
+      "lexical_context_precision": 0.6952380952380952,
+      "lexical_context_recall": 1.0,
       "citation_coverage": 1.0
     },
     {
@@ -1564,8 +1564,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.8467374460906831,
-      "term_context_precision": 0.3904761904761905,
-      "term_context_recall": 0.7619047619047619,
+      "lexical_context_precision": 0.3904761904761905,
+      "lexical_context_recall": 0.7619047619047619,
       "citation_coverage": 1.0
     },
     {
@@ -1577,8 +1577,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9943761353908044,
-      "term_context_precision": 0.56,
-      "term_context_recall": 0.88,
+      "lexical_context_precision": 0.56,
+      "lexical_context_recall": 0.88,
       "citation_coverage": 1.0
     },
     {
@@ -1590,8 +1590,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9915178449815043,
-      "term_context_precision": 0.7354838709677419,
-      "term_context_recall": 1.0,
+      "lexical_context_precision": 0.7354838709677419,
+      "lexical_context_recall": 1.0,
       "citation_coverage": 1.0
     },
     {
@@ -1603,8 +1603,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.8410142930970752,
-      "term_context_precision": 0.3875,
-      "term_context_recall": 0.8125,
+      "lexical_context_precision": 0.3875,
+      "lexical_context_recall": 0.8125,
       "citation_coverage": 1.0
     },
     {
@@ -1616,8 +1616,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9748839193049303,
-      "term_context_precision": 0.5809523809523809,
-      "term_context_recall": 0.9047619047619048,
+      "lexical_context_precision": 0.5809523809523809,
+      "lexical_context_recall": 0.9047619047619048,
       "citation_coverage": 1.0
     },
     {
@@ -1629,8 +1629,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9389319448180093,
-      "term_context_precision": 0.26206896551724135,
-      "term_context_recall": 0.41379310344827586,
+      "lexical_context_precision": 0.26206896551724135,
+      "lexical_context_recall": 0.41379310344827586,
       "citation_coverage": 1.0
     },
     {
@@ -1642,8 +1642,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 1.0,
-      "term_context_precision": 0.7037037037037037,
-      "term_context_recall": 1.0,
+      "lexical_context_precision": 0.7037037037037037,
+      "lexical_context_recall": 1.0,
       "citation_coverage": 1.0
     },
     {
@@ -1655,8 +1655,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9341264319397962,
-      "term_context_precision": 0.5573770491803278,
-      "term_context_recall": 0.9508196721311475,
+      "lexical_context_precision": 0.5573770491803278,
+      "lexical_context_recall": 0.9508196721311475,
       "citation_coverage": 1.0
     },
     {
@@ -1668,8 +1668,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9995807908112543,
-      "term_context_precision": 0.52,
-      "term_context_recall": 0.8769230769230769,
+      "lexical_context_precision": 0.52,
+      "lexical_context_recall": 0.8769230769230769,
       "citation_coverage": 1.0
     },
     {
@@ -1681,8 +1681,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 1.0,
-      "term_context_precision": 0.375,
-      "term_context_recall": 0.875,
+      "lexical_context_precision": 0.375,
+      "lexical_context_recall": 0.875,
       "citation_coverage": 1.0
     },
     {
@@ -1694,8 +1694,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9918595666620239,
-      "term_context_precision": 0.31481481481481477,
-      "term_context_recall": 0.5,
+      "lexical_context_precision": 0.31481481481481477,
+      "lexical_context_recall": 0.5,
       "citation_coverage": 1.0
     },
     {
@@ -1707,8 +1707,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9848344693889985,
-      "term_context_precision": 0.5956521739130435,
-      "term_context_recall": 0.9782608695652174,
+      "lexical_context_precision": 0.5956521739130435,
+      "lexical_context_recall": 0.9782608695652174,
       "citation_coverage": 1.0
     },
     {
@@ -1720,8 +1720,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9761699039948957,
-      "term_context_precision": 0.38378378378378375,
-      "term_context_recall": 0.7567567567567568,
+      "lexical_context_precision": 0.38378378378378375,
+      "lexical_context_recall": 0.7567567567567568,
       "citation_coverage": 1.0
     },
     {
@@ -1733,8 +1733,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9854895824363927,
-      "term_context_precision": 0.5454545454545455,
-      "term_context_recall": 0.9545454545454546,
+      "lexical_context_precision": 0.5454545454545455,
+      "lexical_context_recall": 0.9545454545454546,
       "citation_coverage": 1.0
     },
     {
@@ -1746,8 +1746,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9748184231464898,
-      "term_context_precision": 0.45,
-      "term_context_recall": 0.7678571428571429,
+      "lexical_context_precision": 0.45,
+      "lexical_context_recall": 0.7678571428571429,
       "citation_coverage": 1.0
     },
     {
@@ -1759,8 +1759,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.8620244424494645,
-      "term_context_precision": 0.575,
-      "term_context_recall": 0.9375,
+      "lexical_context_precision": 0.575,
+      "lexical_context_recall": 0.9375,
       "citation_coverage": 1.0
     },
     {
@@ -1772,8 +1772,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9985213872087284,
-      "term_context_precision": 0.45200000000000007,
-      "term_context_recall": 0.9,
+      "lexical_context_precision": 0.45200000000000007,
+      "lexical_context_recall": 0.9,
       "citation_coverage": 1.0
     },
     {
@@ -1785,8 +1785,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9914154982927095,
-      "term_context_precision": 0.55,
-      "term_context_recall": 0.8409090909090909,
+      "lexical_context_precision": 0.55,
+      "lexical_context_recall": 0.8409090909090909,
       "citation_coverage": 1.0
     },
     {
@@ -1798,8 +1798,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.856660700112395,
-      "term_context_precision": 0.5684210526315789,
-      "term_context_recall": 0.9473684210526315,
+      "lexical_context_precision": 0.5684210526315789,
+      "lexical_context_recall": 0.9473684210526315,
       "citation_coverage": 1.0
     },
     {
@@ -1811,8 +1811,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9051103546486693,
-      "term_context_precision": 0.5363636363636364,
-      "term_context_recall": 0.8636363636363636,
+      "lexical_context_precision": 0.5363636363636364,
+      "lexical_context_recall": 0.8636363636363636,
       "citation_coverage": 1.0
     },
     {
@@ -1824,8 +1824,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9130410981518629,
-      "term_context_precision": 0.615,
-      "term_context_recall": 0.925,
+      "lexical_context_precision": 0.615,
+      "lexical_context_recall": 0.925,
       "citation_coverage": 1.0
     },
     {
@@ -1837,8 +1837,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.932056904550396,
-      "term_context_precision": 0.52,
-      "term_context_recall": 0.7,
+      "lexical_context_precision": 0.52,
+      "lexical_context_recall": 0.7,
       "citation_coverage": 1.0
     },
     {
@@ -1850,8 +1850,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9847459539282396,
-      "term_context_precision": 0.6684210526315789,
-      "term_context_recall": 0.9473684210526315,
+      "lexical_context_precision": 0.6684210526315789,
+      "lexical_context_recall": 0.9473684210526315,
       "citation_coverage": 1.0
     },
     {
@@ -1863,8 +1863,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 1.0,
-      "term_context_precision": 0.5948717948717949,
-      "term_context_recall": 0.8974358974358975,
+      "lexical_context_precision": 0.5692307692307692,
+      "lexical_context_recall": 0.8974358974358975,
       "citation_coverage": 1.0
     },
     {
@@ -1876,8 +1876,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9926797802539704,
-      "term_context_precision": 0.767741935483871,
-      "term_context_recall": 1.0,
+      "lexical_context_precision": 0.767741935483871,
+      "lexical_context_recall": 1.0,
       "citation_coverage": 1.0
     },
     {
@@ -1889,8 +1889,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9434241669508818,
-      "term_context_precision": 0.5125,
-      "term_context_recall": 0.90625,
+      "lexical_context_precision": 0.5125,
+      "lexical_context_recall": 0.90625,
       "citation_coverage": 1.0
     },
     {
@@ -1902,8 +1902,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.8878443865410927,
-      "term_context_precision": 0.7,
-      "term_context_recall": 1.0,
+      "lexical_context_precision": 0.7,
+      "lexical_context_recall": 1.0,
       "citation_coverage": 1.0
     },
     {
@@ -1915,8 +1915,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9377746911237768,
-      "term_context_precision": 0.5,
-      "term_context_recall": 0.84375,
+      "lexical_context_precision": 0.5,
+      "lexical_context_recall": 0.84375,
       "citation_coverage": 1.0
     },
     {
@@ -1928,8 +1928,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.8123343345842056,
-      "term_context_precision": 0.28205128205128205,
-      "term_context_recall": 0.7948717948717948,
+      "lexical_context_precision": 0.28205128205128205,
+      "lexical_context_recall": 0.7948717948717948,
       "citation_coverage": 1.0
     },
     {
@@ -1941,8 +1941,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9120732301422269,
-      "term_context_precision": 0.7523809523809524,
-      "term_context_recall": 1.0,
+      "lexical_context_precision": 0.7523809523809524,
+      "lexical_context_recall": 1.0,
       "citation_coverage": 1.0
     },
     {
@@ -1953,9 +1953,9 @@
       "top_title": "Về việc ban hành Kế hoạch sửa chữa sai lầm trong các cuộc phát động quần chúng ở các xí nghiệp, công trường, nông trường",
       "recall@5": 1.0,
       "mrr": 1.0,
-      "ndcg@5": 0.922763389812594,
-      "term_context_precision": 0.2984126984126984,
-      "term_context_recall": 0.6666666666666666,
+      "ndcg@5": 0.9192429658254172,
+      "lexical_context_precision": 0.2761904761904762,
+      "lexical_context_recall": 0.6984126984126984,
       "citation_coverage": 1.0
     },
     {
@@ -1967,8 +1967,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9780661712661435,
-      "term_context_precision": 0.45199999999999996,
-      "term_context_recall": 0.9,
+      "lexical_context_precision": 0.45199999999999996,
+      "lexical_context_recall": 0.9,
       "citation_coverage": 1.0
     },
     {
@@ -1980,8 +1980,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9776217902978778,
-      "term_context_precision": 0.4709677419354838,
-      "term_context_recall": 0.9354838709677419,
+      "lexical_context_precision": 0.4709677419354838,
+      "lexical_context_recall": 0.9354838709677419,
       "citation_coverage": 1.0
     },
     {
@@ -1993,8 +1993,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.8410142930970752,
-      "term_context_precision": 0.3875,
-      "term_context_recall": 0.8125,
+      "lexical_context_precision": 0.3875,
+      "lexical_context_recall": 0.8125,
       "citation_coverage": 1.0
     },
     {
@@ -2006,8 +2006,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9728822222580976,
-      "term_context_precision": 0.5714285714285714,
-      "term_context_recall": 0.9047619047619048,
+      "lexical_context_precision": 0.5714285714285714,
+      "lexical_context_recall": 0.9047619047619048,
       "citation_coverage": 1.0
     },
     {
@@ -2019,8 +2019,8 @@
       "recall@5": 1.0,
       "mrr": 1.0,
       "ndcg@5": 0.9389319448180093,
-      "term_context_precision": 0.26206896551724135,
-      "term_context_recall": 0.41379310344827586,
+      "lexical_context_precision": 0.26206896551724135,
+      "lexical_context_recall": 0.41379310344827586,
       "citation_coverage": 1.0
     }
   ]

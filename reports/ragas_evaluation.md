@@ -18,7 +18,7 @@
 ## Figures
 
 - `reports/figures/ragas_answer_metrics.png`
-- `reports/figures/ragas_per_question_heatmap.png` when RAGAS details are available
+- `reports/figures/ragas_per_question_heatmap.png`
 
 ## Weakest Cases
 
