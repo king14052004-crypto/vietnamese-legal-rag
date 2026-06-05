@@ -4,18 +4,19 @@
 
 ```text
 01_data_exploration.ipynb
-  -> filter corpus with Gemini
+  -> inspect raw data, plot article/length distributions, filter corpus with Gemini
 02_retrieval_experiments.ipynb
   -> compare BM25 / vector / weighted hybrid / Hybrid RRF / MMR
-  -> select the retrieval method with a fixed score over retrieval and RAGAS context metrics
+  -> rank retrieval candidates only, without final selection
 03_ragas_evaluation.ipynb
-  -> generate answers with the selected pipeline
+  -> generate answers for top retrieval candidates
   -> evaluate answer quality on the frozen RAGAS-generated benchmark
+  -> select the final method with a fixed retrieval + answer score
 ```
 
 Experimental filtering, retrieval, and evaluation code stays in notebooks. Deploy-facing Python code only keeps data loading, chunking, the selected retrieval pipeline, Gemini generation, CLI, and Streamlit UI.
 
-The evaluation workflow freezes RAGAS-generated synthetic benchmark questions in `reports/ragas_questions.json`, compares retrieval methods in notebook 02, then runs `ragas.evaluate()` answer metrics in notebook 03. Cached artifacts are marked explicitly when Gemini quota or keys are unavailable.
+The evaluation workflow freezes RAGAS-generated synthetic benchmark questions in `reports/ragas_questions.json`, compares retrieval methods in notebook 02, then runs `ragas.evaluate()` answer metrics and final selection in notebook 03. Cached artifacts are marked explicitly when Gemini quota or keys are unavailable.
 
 ## Production Pipeline
 
@@ -29,12 +30,12 @@ Gemini-filtered Vietnamese labor-law corpus
   -> CLI / Streamlit UI
 ```
 
-## Selected Retrieval Method
+## Final Retrieval Method
 
-The selected notebook retriever is the method with the highest fixed selection score. The compared retrievers combine:
+The final notebook retriever is selected in notebook 03, after answer-level evaluation. The compared retrievers combine:
 
 - exact legal terminology recall from BM25,
-- semantic matching from multilingual sentence embeddings and FAISS,
+- sparse TF-IDF similarity for a lightweight vector baseline,
 - stable rank-level fusion without score-scale normalization.
 
 Weighted fusion, RRF, and MMR remain notebook experiments, not production branches. The local CLI/UI uses a memory-aware fallback on very large chunk sets so the full generated corpus can run on a laptop without hardcoded query terms or a prebuilt vector index.
