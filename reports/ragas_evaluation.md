@@ -1,5 +1,9 @@
 # RAGAS Answer Evaluation and Final Selection
 
+## Comparison
+
+The table below compares the finalist retrieval methods after generation. The final method is chosen only after looking at retrieval score, answer score, and the combined final score.
+
 - Backend: `ragas_evaluate`
 - Cached metrics used: `True`
 - Answers cached: `True`
