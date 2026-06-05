@@ -9,6 +9,8 @@ from src.data.clean_text import tokenize_vi
 from src.data.schema import LegalChunk, SearchResult
 
 DEFAULT_EMBEDDING_MODEL = "intfloat/multilingual-e5-small"
+DEFAULT_CROSS_ENCODER_MODEL = "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+DEFAULT_RETRIEVAL_METHOD = "hybrid_rrf_cross_encoder_mmr"
 LARGE_CORPUS_CHUNK_THRESHOLD = 100_000
 
 
@@ -17,6 +19,8 @@ class RetrievalPipeline:
         self,
         chunks: list[LegalChunk],
         embedding_model: str = DEFAULT_EMBEDDING_MODEL,
+        cross_encoder_model: str = DEFAULT_CROSS_ENCODER_MODEL,
+        retrieval_method: str = DEFAULT_RETRIEVAL_METHOD,
         use_tfidf_fallback: bool = False,
     ):
         if not chunks:
@@ -24,7 +28,10 @@ class RetrievalPipeline:
 
         self.chunks = chunks
         self.embedding_model = embedding_model
+        self.cross_encoder_model = cross_encoder_model
+        self.retrieval_method = retrieval_method
         self._encoder = None
+        self._cross_encoder = None
         self._vectorizer = None
         self.vector_backend = "sentence_transformer"
         self._keyword_only = use_tfidf_fallback and len(chunks) > LARGE_CORPUS_CHUNK_THRESHOLD
@@ -45,6 +52,12 @@ class RetrievalPipeline:
         candidate_k = min(len(self.chunks), max(30, top_k * 5))
         sparse_results = self._retrieve_bm25(query, candidate_k)
         vector_results = self._retrieve_vector(query, candidate_k)
+        if self.retrieval_method == "hybrid":
+            return self._weighted_hybrid(sparse_results, vector_results, top_k)
+        if self.retrieval_method == "hybrid_rrf_cross_encoder_mmr":
+            fused = self._rrf([sparse_results, vector_results], candidate_k)
+            reranked = self._cross_encoder_rerank(query, fused[:candidate_k])
+            return self._mmr(query, reranked, top_k)
         return self._weighted_hybrid(sparse_results, vector_results, top_k)
 
     @staticmethod
@@ -159,6 +172,81 @@ class RetrievalPipeline:
             for rank, (idx, score) in enumerate(zip(indices[0], scores[0]), start=1)
             if idx >= 0
         ]
+
+    def _rrf(self, result_lists: list[list[SearchResult]], top_k: int, k: int = 60) -> list[SearchResult]:
+        scores: dict[str, float] = defaultdict(float)
+        chunks: dict[str, LegalChunk] = {}
+        for results in result_lists:
+            for rank, result in enumerate(results, start=1):
+                scores[result.chunk.chunk_id] += 1.0 / (k + rank)
+                chunks[result.chunk.chunk_id] = result.chunk
+
+        ordered = sorted(scores.items(), key=lambda item: item[1], reverse=True)[:top_k]
+        return [
+            SearchResult(chunks[chunk_id], float(score), "hybrid_rrf", rank)
+            for rank, (chunk_id, score) in enumerate(ordered, start=1)
+        ]
+
+    def _cross_encoder_rerank(self, query: str, candidates: list[SearchResult]) -> list[SearchResult]:
+        if not candidates:
+            return []
+        try:
+            if self._cross_encoder is None:
+                from sentence_transformers import CrossEncoder
+
+                self._cross_encoder = CrossEncoder(self.cross_encoder_model, max_length=512)
+            pairs = [(query, self._chunk_text(result.chunk)) for result in candidates]
+            scores = self._cross_encoder.predict(pairs, batch_size=16, show_progress_bar=False)
+            ranked = sorted(zip(candidates, scores), key=lambda item: float(item[1]), reverse=True)
+            return [
+                SearchResult(result.chunk, float(score), "hybrid_rrf_cross_encoder", rank)
+                for rank, (result, score) in enumerate(ranked, start=1)
+            ]
+        except Exception as exc:
+            warnings.warn(f"Falling back to Hybrid RRF because Cross-Encoder reranking failed: {exc}")
+            return candidates
+
+    def _mmr(self, query: str, candidates: list[SearchResult], top_k: int, lambda_mult: float = 0.75) -> list[SearchResult]:
+        relevance_scores = self._minmax(candidates)
+        selected: list[SearchResult] = []
+        remaining = candidates[:]
+        while remaining and len(selected) < top_k:
+            best_idx, best_score = 0, -float("inf")
+            for idx, result in enumerate(remaining):
+                relevance = max(
+                    relevance_scores.get(result.chunk.chunk_id, 0.0),
+                    self._query_overlap(query, result.chunk),
+                )
+                redundancy = max(
+                    (self._chunk_overlap(result.chunk, chosen.chunk) for chosen in selected),
+                    default=0.0,
+                )
+                score = lambda_mult * relevance - (1 - lambda_mult) * redundancy
+                if score > best_score:
+                    best_idx, best_score = idx, score
+            chosen = remaining.pop(best_idx)
+            selected.append(
+                SearchResult(chosen.chunk, float(best_score), "hybrid_rrf_cross_encoder_mmr", len(selected) + 1)
+            )
+        return selected
+
+    @staticmethod
+    def _token_set(text: str) -> set[str]:
+        return {token for token in tokenize_vi(text) if len(token) > 1}
+
+    def _query_overlap(self, query: str, chunk: LegalChunk) -> float:
+        query_tokens = self._token_set(query)
+        chunk_tokens = self._token_set(self._chunk_text(chunk))
+        if not query_tokens or not chunk_tokens:
+            return 0.0
+        return len(query_tokens & chunk_tokens) / len(query_tokens)
+
+    def _chunk_overlap(self, left: LegalChunk, right: LegalChunk) -> float:
+        left_tokens = self._token_set(self._chunk_text(left))
+        right_tokens = self._token_set(self._chunk_text(right))
+        if not left_tokens or not right_tokens:
+            return 0.0
+        return len(left_tokens & right_tokens) / len(left_tokens | right_tokens)
 
     @staticmethod
     def _minmax(results: list[SearchResult]) -> dict[str, float]:

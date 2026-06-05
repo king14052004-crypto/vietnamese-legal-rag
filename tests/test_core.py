@@ -48,7 +48,7 @@ class RetrievalPipelineTests(unittest.TestCase):
             RetrievalPipeline([], use_tfidf_fallback=True)
 
     def test_pipeline_returns_hybrid_results(self) -> None:
-        pipeline = RetrievalPipeline(self.chunks, use_tfidf_fallback=True)
+        pipeline = RetrievalPipeline(self.chunks, retrieval_method="hybrid", use_tfidf_fallback=True)
         results = pipeline.retrieve("trợ cấp thôi việc", top_k=2)
 
         self.assertEqual(pipeline.vector_backend, "tfidf")
@@ -57,6 +57,16 @@ class RetrievalPipelineTests(unittest.TestCase):
         self.assertEqual([result.rank for result in results], [1, 2])
         self.assertTrue(all(result.method == "hybrid" for result in results))
 
+    def test_default_pipeline_uses_selected_method_with_rerank_fallback(self) -> None:
+        pipeline = RetrievalPipeline(self.chunks, use_tfidf_fallback=True)
+
+        with patch.object(pipeline, "_cross_encoder_rerank", side_effect=lambda _query, candidates: candidates):
+            results = pipeline.retrieve("trá»£ cáº¥p thÃ´i viá»‡c", top_k=2)
+
+        self.assertEqual(pipeline.retrieval_method, "hybrid_rrf_cross_encoder_mmr")
+        self.assertEqual(len(results), 2)
+        self.assertTrue(all(result.method == "hybrid_rrf_cross_encoder_mmr" for result in results))
+
     def test_large_tfidf_fallback_uses_keyword_scan(self) -> None:
         chunks = [
             LegalChunk("match", "doc-1", "Labor contract", "employee termination notice period"),
@@ -64,7 +74,7 @@ class RetrievalPipelineTests(unittest.TestCase):
             LegalChunk("safety", "doc-3", "Safety", "workplace safety equipment"),
         ]
         with patch("src.retrieval.pipeline.LARGE_CORPUS_CHUNK_THRESHOLD", 2):
-            pipeline = RetrievalPipeline(chunks, use_tfidf_fallback=True)
+            pipeline = RetrievalPipeline(chunks, retrieval_method="hybrid", use_tfidf_fallback=True)
 
         results = pipeline.retrieve("employee termination notice", top_k=1)
 

@@ -18,6 +18,6 @@ class LegalRagPipeline:
             question=question,
             answer=answer,
             citations=citations,
-            retrieval_method="hybrid",
+            retrieval_method=self.retriever.retrieval_method,
             context_chunks=[result.chunk for result in results],
         )

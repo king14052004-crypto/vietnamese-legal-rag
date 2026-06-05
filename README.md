@@ -8,11 +8,10 @@ The project follows a notebook-first workflow:
 
 1. Filter the public Vietnamese legal corpus with Gemini in `notebooks/01_data_exploration.ipynb`.
 2. Compare retrieval methods in `notebooks/02_retrieval_experiments.ipynb`.
-3. Select the balanced retrieval method from notebook metrics.
-4. Generate answers and run RAGAS answer evaluation in `notebooks/03_ragas_evaluation.ipynb`.
+3. Generate answers for every retrieval method and run RAGAS generation evaluation in `notebooks/03_ragas_evaluation.ipynb`.
 5. Keep only the selected pipeline in `src/` for the CLI and Streamlit demo.
 
-The current notebook-selected retrieval method is weighted `hybrid`: BM25 + TF-IDF/FAISS vector retrieval selected by a fixed score over lexical retrieval metrics and RAGAS context metrics. The CLI and Streamlit demo use a memory-aware local fallback on the generated corpus so the project runs reliably without prebuilt vector artifacts.
+The current notebook-selected retrieval method is `Hybrid + RRF + Cross-Encoder + MMR`, selected by RAGAS generation metrics. Retrieval metrics are kept as diagnostics only. The CLI and Streamlit demo use a memory-aware local fallback on the generated corpus so the project runs reliably without prebuilt vector artifacts.
 
 ## Setup
 
@@ -48,9 +47,9 @@ notebooks/02_retrieval_experiments.ipynb
 notebooks/03_ragas_evaluation.ipynb
 ```
 
-`02_retrieval_experiments.ipynb` compares `bm25`, `vector`, `hybrid`, `hybrid_rrf`, and `hybrid_rrf_mmr` on the frozen RAGAS-generated benchmark questions. It writes tables plus bar chart and heatmap artifacts under `reports/`.
+`02_retrieval_experiments.ipynb` compares `bm25`, `vector`, `hybrid`, `hybrid_rrf`, `hybrid_rrf_cross_encoder`, and `hybrid_rrf_cross_encoder_mmr` on the frozen RAGAS-generated benchmark questions. It writes retrieval-only tables plus bar chart and heatmap artifacts under `reports/`.
 
-`03_ragas_evaluation.ipynb` generates answers with the selected retriever and evaluates them with `ragas.evaluate()` using context precision, context recall, faithfulness, answer relevancy, and answer correctness.
+`03_ragas_evaluation.ipynb` generates answers for all six retrieval methods and evaluates them with `ragas.evaluate()`. Final selection uses only generation metrics: faithfulness, answer relevancy, and answer correctness.
 
 The deploy-facing Python code does not contain experimental branches.
 
@@ -78,10 +77,11 @@ The UI starts in retrieval-only mode so it works without a Gemini key. Enable Ge
 
 ## Selected Deploy Configuration
 
-- Retrieval: notebook-selected hybrid retrieval; memory-aware local retrieval in CLI/UI
+- Retrieval: notebook-selected `Hybrid + RRF + Cross-Encoder + MMR`; memory-aware local retrieval in CLI/UI
 - Sparse retrieval: BM25 / memory-aware keyword scan for large local corpora
 - Vector backend: FAISS for embedding experiments
 - Embedding model: `intfloat/multilingual-e5-small`
+- Cross-Encoder model: `cross-encoder/mmarco-mMiniLMv2-L12-H384-v1`
 - LLM: `gemini-3.1-flash-lite`
 - API key strategy: round-robin over `GEMINI_API_KEYS` with per-key rate limiting
 - UI: Streamlit
