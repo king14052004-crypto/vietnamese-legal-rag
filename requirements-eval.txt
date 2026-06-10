@@ -1,0 +1,14 @@
+# Extra dependencies for data prep, notebooks and evaluation scripts
+-r requirements.txt
+datasets>=2.18.0
+huggingface-hub>=0.20.0
+ipykernel>=6.29.0
+langchain-community>=0.3.31,<0.4.0
+langchain-google-genai>=4.2.0
+matplotlib>=3.8.0
+nbclient>=0.10.0
+pandas>=2.2.0
+pyarrow>=15.0.0
+ragas>=0.4.0
+rapidfuzz>=3.10.0
+tqdm>=4.66.0

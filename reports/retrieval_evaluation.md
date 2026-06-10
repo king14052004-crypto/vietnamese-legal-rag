@@ -1,25 +1,20 @@
 # Retrieval Evaluation
 
-- Question count: `30`
-- Benchmark chunks: `128519`
-- Selection stage: `retrieval_diagnostics_only`
-- Dense embedding model: `intfloat/multilingual-e5-small`
-- Vector pool size: `300` BM25 candidates per query
-- Cross-Encoder model: `cross-encoder/mmarco-mMiniLMv2-L12-H384-v1`
-- Retrieval score formula: `0.30*recall@5 + 0.25*mrr + 0.25*ndcg@5 + 0.10*lexical_context_precision + 0.10*lexical_context_recall`
-- RAGAS context note: `Diagnostic only; not used in retrieval_score.`
+- Benchmark: `benchmark_questions.json` (30 paraphrased questions with gold chunk labels)
+- Corpus: `labor_corpus_sample.jsonl` (2496 chunks)
+- Metrics are exact: a hit means the gold chunk (the chunk the question was generated from) appears in the top 5.
+- Ranking score: `0.4*recall@5 + 0.3*mrr + 0.2*ndcg@5 + 0.1*doc_recall@5`
 
-| Rank | Method | Recall@5 | MRR | nDCG@5 | Lexical CP | Lexical CR | RAGAS CP | RAGAS CR | Retrieval score |
-|---:|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| 1 | Hybrid + RRF + Cross-Encoder | 1.000 | 1.000 | 0.970 | 0.110 | 0.910 | N/A | N/A | 0.894 |
-| 2 | Hybrid + RRF + Cross-Encoder + MMR | 1.000 | 1.000 | 0.971 | 0.106 | 0.908 | N/A | N/A | 0.894 |
-| 3 | Hybrid | 1.000 | 1.000 | 0.973 | 0.109 | 0.888 | N/A | N/A | 0.893 |
-| 4 | Hybrid + RRF | 1.000 | 1.000 | 0.957 | 0.109 | 0.898 | N/A | N/A | 0.890 |
-| 5 | BM25 | 1.000 | 1.000 | 0.966 | 0.094 | 0.883 | N/A | N/A | 0.889 |
-| 6 | Vector | 1.000 | 0.978 | 0.961 | 0.110 | 0.859 | N/A | N/A | 0.882 |
+| Method | Recall@5 | MRR | nDCG@5 | Doc Recall@5 | Score |
+|---|---|---|---|---|---|
+| hybrid_rrf_cross_encoder | 0.500 | 0.276 | 0.332 | 0.700 | 0.419 |
+| hybrid_rrf_cross_encoder_mmr | 0.433 | 0.258 | 0.303 | 0.600 | 0.371 |
+| vector | 0.400 | 0.228 | 0.271 | 0.667 | 0.349 |
+| hybrid | 0.400 | 0.202 | 0.251 | 0.600 | 0.331 |
+| hybrid_rrf | 0.300 | 0.158 | 0.194 | 0.567 | 0.263 |
+| bm25 | 0.200 | 0.157 | 0.167 | 0.333 | 0.194 |
 
-## Figures
+Best method by retrieval score: **hybrid_rrf_cross_encoder**.
 
-- `reports/figures/retrieval_score.png`
-- `reports/figures/retrieval_metric_comparison.png`
-- `reports/figures/retrieval_query_heatmap.png`
+Note: questions are paraphrased away from the legal wording, so keyword-only
+retrieval is expected to miss some questions and the metrics can separate methods.

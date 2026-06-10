@@ -9,7 +9,10 @@ from src.generation.prompt import build_rag_prompt
 from src.retrieval.pipeline import RetrievalPipeline
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_CORPUS = PROJECT_ROOT / "data/processed/labor_corpus.jsonl"
+FULL_CORPUS = PROJECT_ROOT / "data/processed/labor_corpus.jsonl"
+SAMPLE_CORPUS = PROJECT_ROOT / "data/processed/labor_corpus_sample.jsonl"
+DEFAULT_CORPUS = FULL_CORPUS if FULL_CORPUS.exists() else SAMPLE_CORPUS
+CACHE_DIR = PROJECT_ROOT / ".cache"
 DEFAULT_QUESTION = "Người lao động đơn phương chấm dứt hợp đồng cần báo trước bao lâu?"
 DEFAULT_TOP_K = 6
 
@@ -18,7 +21,7 @@ DEFAULT_TOP_K = 6
 def load_retriever(corpus_path: str = str(DEFAULT_CORPUS)) -> RetrievalPipeline:
     documents = load_documents_from_jsonl(corpus_path)
     chunks = chunk_documents(documents)
-    return RetrievalPipeline(chunks, use_tfidf_fallback=True)
+    return RetrievalPipeline(chunks, cache_dir=CACHE_DIR)
 
 
 def retrieve_contexts(
