@@ -17,7 +17,9 @@ __pycache__/
 .env
 .env.*
 !.env.example
+.cache/
 data/processed/*.jsonl
+!data/processed/labor_corpus_sample.jsonl
 data/processed/labor_chunks.jsonl
 reports/*_embedding.*
 reports/labor_filter_gemini.jsonl

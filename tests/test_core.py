@@ -61,27 +61,11 @@ class RetrievalPipelineTests(unittest.TestCase):
         pipeline = RetrievalPipeline(self.chunks, use_tfidf_fallback=True)
 
         with patch.object(pipeline, "_cross_encoder_rerank", side_effect=lambda _query, candidates: candidates):
-            results = pipeline.retrieve("trá»£ cáº¥p thÃ´i viá»‡c", top_k=2)
+            results = pipeline.retrieve("trợ cấp thôi việc", top_k=2)
 
         self.assertEqual(pipeline.retrieval_method, "hybrid_rrf_cross_encoder_mmr")
         self.assertEqual(len(results), 2)
         self.assertTrue(all(result.method == "hybrid_rrf_cross_encoder_mmr" for result in results))
-
-    def test_large_tfidf_fallback_uses_keyword_scan(self) -> None:
-        chunks = [
-            LegalChunk("match", "doc-1", "Labor contract", "employee termination notice period"),
-            LegalChunk("other", "doc-2", "Salary", "minimum wage region"),
-            LegalChunk("safety", "doc-3", "Safety", "workplace safety equipment"),
-        ]
-        with patch("src.retrieval.pipeline.LARGE_CORPUS_CHUNK_THRESHOLD", 2):
-            pipeline = RetrievalPipeline(chunks, retrieval_method="hybrid", use_tfidf_fallback=True)
-
-        results = pipeline.retrieve("employee termination notice", top_k=1)
-
-        self.assertEqual(pipeline.vector_backend, "keyword_scan")
-        self.assertEqual(len(results), 1)
-        self.assertEqual(results[0].chunk.chunk_id, "match")
-        self.assertEqual(results[0].method, "hybrid")
 
     def test_prompt_context_contains_citation(self) -> None:
         result = SearchResult(self.chunks[0], 0.5, "hybrid", 1)

@@ -8,8 +8,14 @@ from src.generation.prompt import build_rag_prompt
 from src.retrieval.pipeline import RetrievalPipeline
 
 PROJECT_ROOT = Path(__file__).resolve().parent
-DEFAULT_CORPUS = PROJECT_ROOT / "data/processed/labor_corpus.jsonl"
+FULL_CORPUS = PROJECT_ROOT / "data/processed/labor_corpus.jsonl"
+SAMPLE_CORPUS = PROJECT_ROOT / "data/processed/labor_corpus_sample.jsonl"
+CACHE_DIR = PROJECT_ROOT / ".cache"
 DEFAULT_TOP_K = 6
+
+
+def pick_corpus() -> Path:
+    return FULL_CORPUS if FULL_CORPUS.exists() else SAMPLE_CORPUS
 
 
 def read_question() -> str:
@@ -32,9 +38,11 @@ def main() -> None:
 
     question = read_question()
 
-    documents = load_documents_from_jsonl(DEFAULT_CORPUS)
+    corpus_path = pick_corpus()
+    print(f"Corpus: {corpus_path.name}")
+    documents = load_documents_from_jsonl(corpus_path)
     chunks = chunk_documents(documents)
-    retriever = RetrievalPipeline(chunks, use_tfidf_fallback=True)
+    retriever = RetrievalPipeline(chunks, cache_dir=CACHE_DIR)
     results = retriever.retrieve(question, top_k=DEFAULT_TOP_K)
 
     try:

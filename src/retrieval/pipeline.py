@@ -1,6 +1,7 @@
+import hashlib
 import warnings
 from collections import defaultdict
-from heapq import nlargest
+from pathlib import Path
 
 import numpy as np
 from rank_bm25 import BM25Okapi
@@ -11,10 +12,24 @@ from src.data.schema import LegalChunk, SearchResult
 DEFAULT_EMBEDDING_MODEL = "intfloat/multilingual-e5-small"
 DEFAULT_CROSS_ENCODER_MODEL = "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
 DEFAULT_RETRIEVAL_METHOD = "hybrid_rrf_cross_encoder_mmr"
-LARGE_CORPUS_CHUNK_THRESHOLD = 100_000
+RETRIEVAL_METHODS = (
+    "bm25",
+    "vector",
+    "hybrid",
+    "hybrid_rrf",
+    "hybrid_rrf_cross_encoder",
+    "hybrid_rrf_cross_encoder_mmr",
+)
 
 
 class RetrievalPipeline:
+    """Sparse (BM25) + dense (FAISS) retrieval with the notebook-selected
+    Hybrid + RRF + Cross-Encoder + MMR method as the default.
+
+    Corpus embeddings can be cached on disk via `cache_dir` so the app does
+    not re-encode the corpus on every start.
+    """
+
     def __init__(
         self,
         chunks: list[LegalChunk],
@@ -22,6 +37,7 @@ class RetrievalPipeline:
         cross_encoder_model: str = DEFAULT_CROSS_ENCODER_MODEL,
         retrieval_method: str = DEFAULT_RETRIEVAL_METHOD,
         use_tfidf_fallback: bool = False,
+        cache_dir: str | Path | None = None,
     ):
         if not chunks:
             raise ValueError("RetrievalPipeline requires at least one chunk")
@@ -30,35 +46,39 @@ class RetrievalPipeline:
         self.embedding_model = embedding_model
         self.cross_encoder_model = cross_encoder_model
         self.retrieval_method = retrieval_method
+        self.cache_dir = Path(cache_dir) if cache_dir else None
         self._encoder = None
         self._cross_encoder = None
         self._vectorizer = None
         self.vector_backend = "sentence_transformer"
-        self._keyword_only = use_tfidf_fallback and len(chunks) > LARGE_CORPUS_CHUNK_THRESHOLD
-        self._bm25 = (
-            None
-            if self._keyword_only
-            else BM25Okapi([tokenize_vi(self._chunk_text(chunk)) for chunk in chunks])
-        )
-        if self._keyword_only:
-            self.vector_backend = "keyword_scan"
-            self._embeddings = None
-            self._index = None
-        else:
-            self._embeddings = self._encode_corpus(use_tfidf_fallback)
-            self._index = self._build_faiss_index(self._embeddings)
+        self._bm25 = BM25Okapi([tokenize_vi(self._chunk_text(chunk)) for chunk in chunks])
+        self._embeddings = self._encode_corpus(use_tfidf_fallback)
+        self._index = self._build_faiss_index(self._embeddings)
 
-    def retrieve(self, query: str, top_k: int = 8) -> list[SearchResult]:
+    def retrieve(self, query: str, top_k: int = 8, method: str | None = None) -> list[SearchResult]:
+        method = method or self.retrieval_method
+        if method not in RETRIEVAL_METHODS:
+            raise ValueError(f"Unknown retrieval method: {method}")
+
         candidate_k = min(len(self.chunks), max(30, top_k * 5))
         sparse_results = self._retrieve_bm25(query, candidate_k)
+        if method == "bm25":
+            return sparse_results[:top_k]
+
         vector_results = self._retrieve_vector(query, candidate_k)
-        if self.retrieval_method == "hybrid":
+        if method == "vector":
+            return vector_results[:top_k]
+        if method == "hybrid":
             return self._weighted_hybrid(sparse_results, vector_results, top_k)
-        if self.retrieval_method == "hybrid_rrf_cross_encoder_mmr":
-            fused = self._rrf([sparse_results, vector_results], candidate_k)
-            reranked = self._cross_encoder_rerank(query, fused[:candidate_k])
-            return self._mmr(query, reranked, top_k)
-        return self._weighted_hybrid(sparse_results, vector_results, top_k)
+
+        fused = self._rrf([sparse_results, vector_results], candidate_k)
+        if method == "hybrid_rrf":
+            return fused[:top_k]
+
+        reranked = self._cross_encoder_rerank(query, fused[:candidate_k])
+        if method == "hybrid_rrf_cross_encoder":
+            return reranked[:top_k]
+        return self._mmr(query, reranked, top_k)
 
     @staticmethod
     def _chunk_text(chunk: LegalChunk) -> str:
@@ -73,13 +93,39 @@ class RetrievalPipeline:
             from sentence_transformers import SentenceTransformer
 
             self._encoder = SentenceTransformer(self.embedding_model)
+            cached = self._load_cached_embeddings(texts)
+            if cached is not None:
+                return cached
             embeddings = self._encoder.encode(texts, normalize_embeddings=True, show_progress_bar=True)
-            return np.asarray(embeddings, dtype="float32")
+            embeddings = np.asarray(embeddings, dtype="float32")
+            self._save_cached_embeddings(texts, embeddings)
+            return embeddings
         except Exception as exc:
             warnings.warn(
                 f"Falling back to TF-IDF vectors because sentence embeddings failed: {exc}"
             )
             return self._encode_tfidf(texts)
+
+    def _embeddings_cache_path(self, texts: list[str]) -> Path | None:
+        if self.cache_dir is None:
+            return None
+        digest = hashlib.sha256()
+        digest.update(self.embedding_model.encode("utf-8"))
+        for text in texts:
+            digest.update(text.encode("utf-8"))
+        return self.cache_dir / f"embeddings_{digest.hexdigest()[:16]}.npy"
+
+    def _load_cached_embeddings(self, texts: list[str]) -> np.ndarray | None:
+        path = self._embeddings_cache_path(texts)
+        if path is not None and path.exists():
+            return np.load(path)
+        return None
+
+    def _save_cached_embeddings(self, texts: list[str], embeddings: np.ndarray) -> None:
+        path = self._embeddings_cache_path(texts)
+        if path is not None:
+            path.parent.mkdir(parents=True, exist_ok=True)
+            np.save(path, embeddings)
 
     def _encode_tfidf(self, texts: list[str]) -> np.ndarray:
         from sklearn.feature_extraction.text import TfidfVectorizer
@@ -113,54 +159,11 @@ class RetrievalPipeline:
         return index
 
     def _retrieve_bm25(self, query: str, top_k: int) -> list[SearchResult]:
-        if self._bm25 is None:
-            return self._retrieve_keyword_scan(query, top_k)
         scores = self._bm25.get_scores(tokenize_vi(query))
         indices = sorted(range(len(scores)), key=lambda idx: scores[idx], reverse=True)[:top_k]
         return [
             SearchResult(self.chunks[idx], float(scores[idx]), "bm25", rank)
             for rank, idx in enumerate(indices, start=1)
-        ]
-
-    def _retrieve_keyword_scan(self, query: str, top_k: int) -> list[SearchResult]:
-        terms = set(token for token in tokenize_vi(query) if len(token) > 1)
-        if not terms:
-            return []
-
-        doc_stats = []
-        doc_freqs: dict[str, int] = defaultdict(int)
-        total_len = 0
-        for idx, chunk in enumerate(self.chunks):
-            counts: dict[str, int] = defaultdict(int)
-            tokens = tokenize_vi(self._chunk_text(chunk))
-            total_len += len(tokens)
-            for token in tokens:
-                if token in terms:
-                    counts[token] += 1
-            if counts:
-                for token in counts:
-                    doc_freqs[token] += 1
-                doc_stats.append((idx, counts, len(tokens)))
-
-        if not doc_stats:
-            return []
-
-        avg_len = total_len / len(self.chunks)
-        scored = []
-        for idx, counts, doc_len in doc_stats:
-            score = 0.0
-            for token, term_freq in counts.items():
-                inverse_doc_freq = np.log(
-                    1.0 + (len(self.chunks) - doc_freqs[token] + 0.5) / (doc_freqs[token] + 0.5)
-                )
-                denominator = term_freq + 1.5 * (0.25 + 0.75 * doc_len / avg_len)
-                score += inverse_doc_freq * (term_freq * 2.5) / denominator
-            scored.append((float(score), idx))
-
-        top = nlargest(top_k, scored, key=lambda item: item[0])
-        return [
-            SearchResult(self.chunks[idx], score, "keyword_scan", rank)
-            for rank, (score, idx) in enumerate(top, start=1)
         ]
 
     def _retrieve_vector(self, query: str, top_k: int) -> list[SearchResult]:
